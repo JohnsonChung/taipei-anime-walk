@@ -14,92 +14,91 @@ const { walk } = Astro.props;
 const { Content } = await walk.render();
 
 const allSpots = await getCollection('spots');
-// 依照 walk.data.spot_sequence 排序找到對應點位
 const sequencedSpots = walk.data.spot_sequence
   .map(id => allSpots.find(s => s.data.id === id || s.slug === id))
   .filter(Boolean);
 ---
 
 <BaseLayout title={`${walk.data.title} | 台北動漫散步指南`}>
-  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
     <!-- 頂部返回 -->
     <div class="mb-8">
-      <a href="/taipei-anime-walk/#walks" class="text-xs font-mono text-ink-muted hover:text-accent transition flex items-center gap-1">
-        ← 返回散步特輯清單
+      <a href="/taipei-anime-walk/#walks" class="text-xs font-mono text-ink-light hover:text-accent transition flex items-center gap-1">
+        ← 回到散步路線
       </a>
     </div>
 
     <!-- 標題區域 -->
     <header class="border-b border-paper-border pb-8 mb-10">
-      <div class="flex items-center gap-3 mb-4">
-        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-paper-hover text-ink-muted">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-paper-hover text-ink-muted">
           📍 {walk.data.target_cluster}
         </span>
         <span class="text-xs font-mono text-ink-light">
-          預估步行：{walk.data.estimated_duration}
+          大約 {walk.data.estimated_duration}
         </span>
       </div>
 
-      <h1 class="font-serif font-black text-3xl sm:text-4xl text-ink tracking-tight mb-4">
+      <h1 class="font-serif font-black text-2xl sm:text-3xl text-ink tracking-tight mb-3">
         {walk.data.title}
       </h1>
-      <p class="text-base sm:text-lg text-ink-muted leading-relaxed">
+      <p class="text-sm text-ink-muted leading-relaxed font-serif">
         {walk.data.subtitle}
       </p>
 
-      <!-- 體能與補給儀表板 -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 bg-white p-6 rounded-2xl border border-paper-border">
+      <!-- 步調與小歇儀表板 -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 bg-white p-5 rounded-2xl border border-paper-border text-xs">
         <div>
-          <div class="text-[11px] font-mono text-ink-light uppercase mb-1">體力消耗量表</div>
+          <div class="text-[10px] font-mono text-ink-light mb-1">散步步調</div>
           <div class="flex items-center gap-1 text-accent font-mono">
             {Array.from({ length: 5 }).map((_, i) => (
-              <span class="text-lg">{i < walk.data.total_stamina_cost ? "⚡" : "•"}</span>
+              <span>{i < walk.data.total_stamina_cost ? "⚡" : "•"}</span>
             ))}
-            <span class="text-xs text-ink-muted ml-2 font-sans font-medium">
-              {walk.data.total_stamina_cost === 5 ? "魔王級挑戰" : walk.data.total_stamina_cost >= 3 ? "需耐力穿梭" : "輕鬆漫步"}
+            <span class="text-[11px] text-ink-muted ml-1 font-sans">
+              ({walk.data.total_stamina_cost}/5)
             </span>
           </div>
         </div>
 
         <div>
-          <div class="text-[11px] font-mono text-ink-light uppercase mb-1">中繼歇腳回血錨點</div>
-          <div class="text-xs font-medium text-ink mt-1">
-            ☕ {walk.data.rest_anchor}
+          <div class="text-[10px] font-mono text-ink-light mb-1">走累了坐坐</div>
+          <div class="text-xs font-medium text-ink mt-0.5">
+            🍵 {walk.data.rest_anchor}
           </div>
         </div>
 
         <div>
-          <div class="text-[11px] font-mono text-ink-light uppercase mb-1">戰利品清點整理點</div>
-          <div class="text-xs font-medium text-ink mt-1">
+          <div class="text-[10px] font-mono text-ink-light mb-1">翻翻東西的角落</div>
+          <div class="text-xs font-medium text-ink mt-0.5">
             🎒 {walk.data.loot_sorting_spot}
           </div>
         </div>
       </div>
     </header>
 
-    <!-- 一筆畫動線節點卡 -->
-    <section class="mb-12">
-      <h2 class="font-serif font-bold text-xl text-ink mb-6 flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-accent"></span>
-        動線順序與節點
+    <!-- 路過的順序 -->
+    <section class="mb-10">
+      <h2 class="font-serif font-bold text-base text-ink mb-4 flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+        順路經過的地方
       </h2>
 
-      <div class="space-y-4">
+      <div class="space-y-3">
         {sequencedSpots.map((spot, index) => (
-          <div class="flex gap-4 items-start bg-white p-5 rounded-xl border border-paper-border">
-            <div class="w-8 h-8 rounded-full bg-paper-hover border border-paper-border flex items-center justify-center font-mono font-bold text-xs text-ink shrink-0">
-              0{index + 1}
+          <div class="flex gap-4 items-start bg-white p-4 rounded-xl border border-paper-border">
+            <div class="w-6 h-6 rounded-full bg-paper-hover border border-paper-border flex items-center justify-center font-mono text-[11px] text-ink-light shrink-0">
+              {index + 1}
             </div>
             <div class="flex-grow">
               <div class="flex items-center justify-between gap-2 mb-1">
-                <a href={`/taipei-anime-walk/spots/${spot.slug}`} class="font-serif font-bold text-base text-ink hover:text-accent transition">
+                <a href={`/taipei-anime-walk/spots/${spot.slug}`} class="font-serif font-bold text-sm text-ink hover:text-accent transition">
                   {spot.data.name}
                 </a>
-                <span class="text-[11px] font-mono text-ink-light">
+                <span class="text-[10px] text-ink-light font-mono">
                   {spot.data.backpack_friendly}
                 </span>
               </div>
-              <p class="text-xs text-ink-muted leading-relaxed">
+              <p class="text-xs text-ink-muted leading-relaxed font-serif">
                 {spot.data.vibe}
               </p>
             </div>
@@ -108,8 +107,8 @@ const sequencedSpots = walk.data.spot_sequence
       </div>
     </section>
 
-    <!-- 散步內文與專欄哲學 -->
-    <div class="prose prose-neutral max-w-none text-ink-muted leading-relaxed">
+    <!-- 散步隨筆正文 -->
+    <div class="prose prose-neutral max-w-none text-ink-muted leading-relaxed font-serif">
       <Content />
     </div>
   </article>

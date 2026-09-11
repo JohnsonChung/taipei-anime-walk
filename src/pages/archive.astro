@@ -7,23 +7,23 @@ const allSpots = await getCollection('spots');
 const archiveSpots = allSpots.filter(s => s.data.status === 'archive');
 ---
 
-<BaseLayout title="時光膠囊：台北二次元歇業名店記憶 | 台北動漫散步指南">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+<BaseLayout title="留在昨天的小店：台北二次元舊記憶 | 台北動漫散步指南">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
     <!-- 頁頭 -->
     <div class="border-b border-paper-border pb-8 mb-10">
-      <div class="flex items-center gap-3 mb-3">
+      <div class="flex items-center gap-2 mb-3">
         <span class="stamp-badge">
-          TIME CAPSULE ARCHIVE
+          ARCHIVE • 留在昨天
         </span>
-        <span class="text-xs font-mono text-archive">文化記憶保留區</span>
+        <span class="text-xs font-mono text-archive">小小的記憶箱</span>
       </div>
 
-      <h1 class="font-serif font-black text-3xl sm:text-5xl text-ink tracking-tight mb-4">
-        時光膠囊：歇業名店文化記憶
+      <h1 class="font-serif font-black text-2xl sm:text-3xl text-ink tracking-tight mb-3">
+        留在昨天的小店
       </h1>
 
-      <p class="text-base text-ink-muted leading-relaxed max-w-2xl font-serif">
-        在實體商業快速更迭的台北，鐵捲門拉下並不代表記憶被抹滅。我們堅持「不刪除、蓋上時光膠囊印章」，讓那些曾在少年時代照亮過我們的漫畫屋、模型攤與同人小舖，永遠沉澱為這座城市的文化地景史。
+      <p class="text-sm text-ink-muted leading-relaxed max-w-2xl font-serif">
+        店鋪雖然拉下了鐵捲門，但記憶還安靜地留在街角。走過熟悉的騎樓時，稍微想起來「那時候放學總會站在這裡等新刊呢」，也是一種溫柔的陪伴。
       </p>
     </div>
 
@@ -35,25 +35,25 @@ const archiveSpots = allSpots.filter(s => s.data.status === 'archive');
       </div>
     ) : (
       <div class="text-center py-16 bg-white rounded-2xl border border-paper-border">
-        <p class="text-sm text-ink-muted font-serif">目前尚未有封存點位</p>
+        <p class="text-sm text-ink-muted font-serif">目前還沒有記錄小店</p>
       </div>
     )}
 
     <!-- 投稿時光膠囊說明 -->
-    <div class="mt-16 bg-archive-bg/40 border border-archive/30 rounded-2xl p-8">
-      <h3 class="font-serif font-bold text-lg text-ink mb-2">
-        📬 記錄你記憶中的台北二次元老店
+    <div class="mt-14 bg-archive-bg/40 border border-archive/30 rounded-2xl p-6 sm:p-8">
+      <h3 class="font-serif font-bold text-base text-ink mb-2">
+        📬 如果你也記得某家已經不在的舊店
       </h3>
-      <p class="text-xs text-ink-muted leading-relaxed mb-4">
-        若你發現有具備文化代表性的老店已停業，歡迎至 GitHub 提交「時光膠囊封存」Issue。請附上概略歇業年份與它曾帶給同好的獨特回憶。
+      <p class="text-xs text-ink-muted leading-relaxed mb-4 font-serif">
+        歡迎隨手在 GitHub 留下它的名字與概略歇業年份，幫它在台北的地圖上留個溫暖的印記。
       </p>
       <a 
-        href="https://github.com/JohnsonChung/taipei-anime-walk/issues/new/choose" target="_blank" 
+        href="https://github.com/JohnsonChung/taipei-anime-walk/issues/new/choose" 
         target="_blank" 
         class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-archive-stamp text-white text-xs font-medium hover:opacity-90 transition"
       >
-        <span>提交時光膠囊 Issue</span>
-        <span>↗</span>
+        <span>在 GitHub 記下一家老店</span>
+        <span>➔</span>
       </a>
     </div>
   </div>

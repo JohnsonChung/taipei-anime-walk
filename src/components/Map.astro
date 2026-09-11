@@ -16,13 +16,13 @@ interface Props {
   height?: string;
 }
 
-const { spots = [], initialCluster, height = "520px" } = Astro.props;
+const { spots = [], initialCluster, height = "480px" } = Astro.props;
 ---
 
 <div class="relative w-full rounded-2xl overflow-hidden border border-paper-border shadow-sm bg-white">
   <!-- 地圖過濾控制器 -->
   <div class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-2 rounded-xl shadow-sm border border-paper-border flex flex-wrap items-center gap-2 text-xs">
-    <span class="font-serif font-bold text-ink text-xs mr-1">圖層篩選:</span>
+    <span class="font-serif font-bold text-ink text-xs mr-1">地圖篩選:</span>
     <button 
       id="filter-all" 
       class="filter-btn active px-2.5 py-1 rounded-lg font-medium transition bg-ink text-white"
@@ -33,13 +33,13 @@ const { spots = [], initialCluster, height = "520px" } = Astro.props;
       id="filter-active" 
       class="filter-btn px-2.5 py-1 rounded-lg font-medium transition bg-paper-hover text-ink-muted hover:text-ink"
     >
-      活躍點位 ({spots.filter(s => s.status === 'active').length})
+      開著的店 ({spots.filter(s => s.status === 'active').length})
     </button>
     <button 
       id="filter-archive" 
       class="filter-btn px-2.5 py-1 rounded-lg font-medium transition bg-archive-bg text-archive hover:text-ink flex items-center gap-1"
     >
-      <span>時光膠囊</span>
+      <span>留在昨天</span>
       <span class="font-mono text-[10px]">({spots.filter(s => s.status === 'archive').length})</span>
     </button>
   </div>
@@ -56,7 +56,6 @@ const { spots = [], initialCluster, height = "520px" } = Astro.props;
       return;
     }
 
-    const defaultCenter = [25.0445, 25.0445]; // 台北車站/西門中心帶
     const map = L.map('taipei-anime-map', {
       center: [25.0450, 121.5150],
       zoom: 14,
@@ -64,12 +63,11 @@ const { spots = [], initialCluster, height = "520px" } = Astro.props;
       scrollWheelZoom: false
     });
 
-    // 縮放控制鈕置於右下
     L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-    // 免費且高質感的 CARTO Positron 極簡淡灰日系底圖 (零 API Key 依賴)
+    // CARTO Positron 極簡淡灰日系底圖
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
       subdomains: 'abcd',
       maxZoom: 19
     }).addTo(map);
@@ -80,7 +78,7 @@ const { spots = [], initialCluster, height = "520px" } = Astro.props;
     function createMarkerIcon(spot) {
       const isArchive = spot.status === 'archive';
       const color = isArchive ? '#8C4830' : '#E05A47';
-      const label = isArchive ? '封' : '★';
+      const label = isArchive ? '昨' : '歩';
 
       return L.divIcon({
         className: 'custom-pin',
@@ -90,22 +88,23 @@ const { spots = [], initialCluster, height = "520px" } = Astro.props;
             border: 2px solid ${color};
             color: ${color};
             border-radius: 9999px;
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 13px;
+            font-size: 12px;
+            font-family: serif;
             font-weight: bold;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
             transform: translate(-50%, -50%);
             transition: all 0.2s ease;
           ">
             ${label}
           </div>
         `,
-        iconSize: [32, 32],
-        iconAnchor: [16, 16]
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
       });
     }
 
@@ -124,14 +123,14 @@ const { spots = [], initialCluster, height = "520px" } = Astro.props;
 
         const isArchive = spot.status === 'archive';
         const popupContent = `
-          <div style="font-family: inherit; min-width: 220px; padding: 4px;">
+          <div style="font-family: sans-serif; min-width: 220px; padding: 4px;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
               <span style="font-size: 10px; font-weight: 600; color: #666; background: #F3F0EA; padding: 2px 6px; border-radius: 4px;">
                 ${spot.cluster}
               </span>
-              ${isArchive ? `<span style="font-size: 10px; color: #8C4830; font-weight: bold; border: 1px solid #8C4830; padding: 1px 4px; border-radius: 3px;">時光膠囊 (${spot.closed_year || '歇業'})</span>` : ''}
+              ${isArchive ? `<span style="font-size: 10px; color: #8C4830; font-weight: bold; border: 1px solid #8C4830; padding: 1px 4px; border-radius: 3px;">留在昨天 (${spot.closed_year || ''})</span>` : ''}
             </div>
-            <div style="font-size: 14px; font-weight: bold; color: #22201E; margin-bottom: 4px;">
+            <div style="font-size: 13px; font-family: serif; font-weight: bold; color: #22201E; margin-bottom: 4px;">
               ${spot.name}
             </div>
             <div style="font-size: 11px; color: #66615B; line-height: 1.4; margin-bottom: 8px;">
@@ -146,7 +145,7 @@ const { spots = [], initialCluster, height = "520px" } = Astro.props;
               </span>
             </div>
             <a href="/taipei-anime-walk/spots/${spot.id}" style="display: block; text-align: center; background: #22201E; color: #FFFFFF; font-size: 11px; padding: 5px 0; border-radius: 6px; text-decoration: none; font-weight: 500;">
-              閱讀完整筆記 ➔
+              看看隨筆 ➔
             </a>
           </div>
         `;
@@ -163,7 +162,6 @@ const { spots = [], initialCluster, height = "520px" } = Astro.props;
 
     renderMarkers();
 
-    // 綁定過濾按鈕事件
     const btnAll = document.getElementById('filter-all');
     const btnActive = document.getElementById('filter-active');
     const btnArchive = document.getElementById('filter-archive');
@@ -204,7 +202,6 @@ const { spots = [], initialCluster, height = "520px" } = Astro.props;
     }
   }
 
-  // 確保 Leaflet 庫加載完成後初始化
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       loadLeafletScript(initMap);

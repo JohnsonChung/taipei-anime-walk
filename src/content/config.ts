@@ -3,7 +3,7 @@ import { defineCollection, z } from 'astro:content';
 const spots = defineCollection({
   type: 'content',
   schema: z.object({
-    id: z.string(),
+    id: z.string().optional(),
     name: z.string(),
     district: z.string(),
     cluster: z.enum([
@@ -39,7 +39,7 @@ const spots = defineCollection({
 const walks = defineCollection({
   type: 'content',
   schema: z.object({
-    id: z.string(),
+    id: z.string().optional(),
     title: z.string(),
     subtitle: z.string(),
     target_cluster: z.string(),

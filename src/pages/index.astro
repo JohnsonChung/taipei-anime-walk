@@ -8,7 +8,6 @@ import { getCollection } from 'astro:content';
 const allWalks = await getCollection('walks');
 const allSpots = await getCollection('spots');
 
-// 準備傳給地圖的資料
 const mapSpotsData = allSpots.map(s => ({
   id: s.slug,
   name: s.data.name,
@@ -27,59 +26,58 @@ const archiveSpots = allSpots.filter(s => s.data.status === 'archive');
 ---
 
 <BaseLayout>
-  <!-- Hero: 獨立誌風格刊頭 -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16">
-    <div class="border-b border-ink/20 pb-10">
-      <div class="flex items-center gap-3 mb-4">
-        <span class="text-xs font-mono tracking-widest uppercase text-accent font-bold px-2.5 py-0.5 rounded-full bg-accent-light">
-          ISSUE 01 • AUTUMN 2026
-        </span>
-        <span class="text-xs font-mono text-ink-light">TAIPEI CITY ANIME WANDERLUST</span>
+  <!-- Hero: 和風日常短篇散文氛圍 -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-14">
+    <div class="border-b border-paper-border pb-10">
+      <div class="flex items-center gap-2 mb-4 text-xs font-mono text-ink-light">
+        <span>台北</span>
+        <span>•</span>
+        <span>午後散步隨筆</span>
       </div>
 
-      <h1 class="font-serif font-black text-4xl sm:text-5xl lg:text-6xl text-ink tracking-tight leading-[1.15] mb-6">
-        帶著個人品味與體感溫度，<br class="hidden sm:inline" />
-        重新丈量台北二次元地景。
+      <h1 class="font-serif font-black text-3xl sm:text-4xl lg:text-5xl text-ink tracking-tight leading-[1.3] mb-6">
+        今天好像也沒什麼特別的目的，<br />
+        只是想出門走一走。
       </h1>
 
-      <p class="text-base sm:text-lg text-ink-muted max-w-2xl leading-relaxed mb-8">
-        這不是冰冷的商業黃頁或大拜拜星等評分。這是一本記錄走道寬窄、模型紙盒油墨香氣、背包避坑法則與歇腳避難所的<strong class="text-ink font-semibold">「台北二次元線上風格獨立誌兼散步地圖」</strong>。
+      <p class="text-sm sm:text-base text-ink-muted leading-relaxed max-w-2xl font-serif mb-8">
+        轉角手扶梯吹來的冷氣微風、沒拆封模型盒特有的紙箱油墨味，還有那些走累了就坐下來發呆的台北角落。沒有一定要買到的東西，也沒有非去不可的答案。只是想把放空的自己帶出門散步一會兒。
       </p>
 
-      <!-- 核心維度快速跳轉卡 -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+      <!-- 日常三個小方向 -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs">
         <a href="#walks" class="p-4 rounded-xl bg-white border border-paper-border hover:border-accent transition group">
-          <div class="text-xs font-mono text-accent mb-1">01 / THE WALKS</div>
-          <div class="font-serif font-bold text-base text-ink group-hover:text-accent transition">散步特輯</div>
-          <div class="text-xs text-ink-muted mt-1">解決出門猶豫的一日精選主題動線</div>
+          <div class="font-mono text-accent text-[11px] mb-1">01 / WALKS</div>
+          <div class="font-serif font-bold text-sm text-ink group-hover:text-accent transition">漫無目的的一日路線</div>
+          <div class="text-[11px] text-ink-light mt-1">走累了隨時能停下來休息</div>
         </a>
 
         <a href="#map" class="p-4 rounded-xl bg-white border border-paper-border hover:border-accent transition group">
-          <div class="text-xs font-mono text-accent mb-1">02 / THE CLUSTERS</div>
-          <div class="font-serif font-bold text-base text-ink group-hover:text-accent transition">探索地圖</div>
-          <div class="text-xs text-ink-muted mt-1">拒絕散落圖釘，聚焦核心商圈聚落</div>
+          <div class="font-mono text-accent text-[11px] mb-1">02 / SPOTS</div>
+          <div class="font-serif font-bold text-sm text-ink group-hover:text-accent transition">街道與角落地圖</div>
+          <div class="text-[11px] text-ink-light mt-1">看看附近有沒有可以晃晃的地方</div>
         </a>
 
-        <a href="/taipei-anime-walk/archive" class="p-4 rounded-xl bg-archive-bg/50 border border-archive/30 hover:border-archive transition group">
-          <div class="text-xs font-mono text-archive mb-1">03 / MEMORY ARCHIVE</div>
-          <div class="font-serif font-bold text-base text-ink group-hover:text-archive transition">時光膠囊</div>
-          <div class="text-xs text-ink-muted mt-1">老店歇業不刪除，沉澱為文化歷史記憶</div>
+        <a href="/taipei-anime-walk/archive" class="p-4 rounded-xl bg-archive-bg/40 border border-archive/30 hover:border-archive transition group">
+          <div class="font-mono text-archive text-[11px] mb-1">03 / MEMORY</div>
+          <div class="font-serif font-bold text-sm text-ink group-hover:text-archive transition">留在昨天的小店</div>
+          <div class="text-[11px] text-ink-light mt-1">那些已經拉下鐵捲門的回憶</div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 散步特輯 (Curated Walks) -->
-  <section id="walks" class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+  <!-- 散步路線 (Walks) -->
+  <section id="walks" class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
       <div>
-        <div class="text-xs font-mono text-accent uppercase tracking-wider mb-1">CURATED WALKS</div>
-        <h2 class="font-serif font-bold text-2xl sm:text-3xl text-ink">
-          散步特輯：一日漫遊指南
+        <div class="text-[11px] font-mono text-accent tracking-wider mb-1">WALK ROUTES</div>
+        <h2 class="font-serif font-bold text-2xl text-ink">
+          今天想去哪裡走走？
         </h2>
       </div>
-      <p class="text-xs sm:text-sm text-ink-muted max-w-md">
-        動線大於點位。精確估算體力消耗、背包轉身寬度與中繼回血歇腳點。
+      <p class="text-xs text-ink-light max-w-sm">
+        不用急著把點踩完。挑一條舒服的路線，順著心情慢慢逛就好。
       </p>
     </div>
 
@@ -90,35 +88,35 @@ const archiveSpots = allSpots.filter(s => s.data.status === 'archive');
     </div>
   </section>
 
-  <!-- 探索地圖 (Interactive Map) -->
-  <section id="map" class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-4">
+  <!-- 地圖 (Map) -->
+  <section id="map" class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
       <div>
-        <div class="text-xs font-mono text-accent uppercase tracking-wider mb-1">INTERACTIVE SPATIAL VIEW</div>
-        <h2 class="font-serif font-bold text-2xl sm:text-3xl text-ink">
-          商圈聚落地圖
+        <div class="text-[11px] font-mono text-accent tracking-wider mb-1">STREET MAP</div>
+        <h2 class="font-serif font-bold text-2xl text-ink">
+          街道上的小小標記
         </h2>
       </div>
-      <div class="text-xs text-ink-muted font-mono flex items-center gap-4">
-        <span>● 活躍店家: {activeSpots.length}</span>
-        <span class="text-archive">■ 時光膠囊: {archiveSpots.length}</span>
+      <div class="text-xs text-ink-light font-mono flex items-center gap-4">
+        <span>● 開著的店: {activeSpots.length}</span>
+        <span class="text-archive">■ 留在昨天: {archiveSpots.length}</span>
       </div>
     </div>
 
-    <Map spots={mapSpotsData} height="520px" />
+    <Map spots={mapSpotsData} height="480px" />
   </section>
 
-  <!-- 精選點位 (Featured Spots) -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+  <!-- 剛好路過的地方 (Spots) -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
     <div class="flex items-center justify-between mb-8">
       <div>
-        <div class="text-xs font-mono text-accent uppercase tracking-wider mb-1">CURATED LOCATIONS</div>
-        <h2 class="font-serif font-bold text-2xl sm:text-3xl text-ink">
-          巷弄漫遊點位筆記
+        <div class="text-[11px] font-mono text-accent tracking-wider mb-1">NOTES ALONG THE WAY</div>
+        <h2 class="font-serif font-bold text-2xl text-ink">
+          剛好路過的店鋪隨筆
         </h2>
       </div>
       <a href="/taipei-anime-walk/spots" class="text-xs font-semibold text-accent hover:underline">
-        查看全部點位 ({allSpots.length}) ➔
+        看全部角落 ({allSpots.length}) ➔
       </a>
     </div>
 
@@ -129,34 +127,33 @@ const archiveSpots = allSpots.filter(s => s.data.status === 'archive');
     </div>
   </section>
 
-  <!-- 社群沙龍徵稿 Call to Action -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-    <div class="bg-white rounded-3xl border border-paper-border p-8 sm:p-12 relative overflow-hidden shadow-sm">
-      <div class="max-w-2xl relative z-10">
-        <span class="stamp-badge mb-4">
-          OPEN TO ALL ANIME WALKERS
+  <!-- 投稿小箱 (CTA) -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+    <div class="bg-white rounded-2xl border border-paper-border p-6 sm:p-8 shadow-sm">
+      <div class="max-w-xl">
+        <span class="text-xs font-serif text-accent mb-2 block font-medium">
+          寫下一點生活碎屑
         </span>
-        <h3 class="font-serif font-black text-2xl sm:text-3xl text-ink mb-4 leading-tight">
-          你也有私藏的台北動漫角落，<br />
-          或是忘不掉的歇業老舖嗎？
+        <h3 class="font-serif font-bold text-xl text-ink mb-3 leading-snug">
+          如果你也在台北街頭，發現了某個舒服的角落
         </h3>
-        <p class="text-sm text-ink-muted leading-relaxed mb-6">
-          本指南以 GitHub 作為唯一的投稿沙龍與品味過濾器。不需懂得深奧的程式碼，透過視覺化的 Issue Form，即可向編輯部推薦你的私房挖寶點位、同好避坑筆記，或替已拉下鐵捲門的時代回憶蓋上一枚時光膠囊印記。
+        <p class="text-xs text-ink-muted leading-relaxed mb-6 font-serif">
+          「那家店的冷氣很舒服」、「那條走道背大包包要側身過」、「轉角有一張長凳很適合發呆」——這些微不足道的小事，都歡迎隨手丟到 GitHub 投稿箱裡，分享給同樣愛散步的人。
         </p>
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-3">
           <a 
-            href="https://github.com/JohnsonChung/taipei-anime-walk/issues/new/choose" target="_blank" 
+            href="https://github.com/JohnsonChung/taipei-anime-walk/issues/new/choose" 
             target="_blank"
-            class="px-6 py-3 rounded-xl bg-ink text-white font-medium text-xs hover:bg-accent transition shadow-sm flex items-center gap-2"
+            class="px-5 py-2.5 rounded-xl bg-ink text-white font-medium text-xs hover:bg-accent transition flex items-center gap-2"
           >
-            <span>前往 GitHub Issue 投稿</span>
+            <span>打開 GitHub 隨筆箱</span>
             <span>➔</span>
           </a>
           <a 
             href="/taipei-anime-walk/about" 
-            class="px-6 py-3 rounded-xl border border-paper-border bg-paper-hover text-ink font-medium text-xs hover:border-ink-muted transition"
+            class="px-5 py-2.5 rounded-xl border border-paper-border bg-paper-hover text-ink text-xs hover:border-ink-muted transition"
           >
-            閱讀編輯室宣言
+            關於散步隨筆
           </a>
         </div>
       </div>

@@ -7,25 +7,25 @@ const allSpots = await getCollection('spots');
 const clusters = ["全部", "西門商圈", "台北地下街", "光華三創", "公館台大"];
 ---
 
-<BaseLayout title="全部漫遊點位 | 台北動漫散步指南">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+<BaseLayout title="走過的地方與店鋪隨筆 | 台北動漫散步指南">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
     <!-- 頁頭 -->
     <div class="border-b border-paper-border pb-8 mb-8">
-      <div class="text-xs font-mono text-accent uppercase tracking-wider mb-2">DIRECTORY & NOTES</div>
-      <h1 class="font-serif font-black text-3xl sm:text-4xl text-ink tracking-tight mb-3">
-        台北二次元漫遊點位彙整
+      <div class="text-[11px] font-mono text-ink-light mb-2">SPOTS • 走過的地方</div>
+      <h1 class="font-serif font-black text-2xl sm:text-3xl text-ink tracking-tight mb-3">
+        街角的店鋪隨筆
       </h1>
-      <p class="text-sm text-ink-muted max-w-2xl leading-relaxed">
-        收錄西門、地下街、光華三創等核心商圈點位，結合老司機黑話、體力消耗條與防吃土背包指南。
+      <p class="text-sm text-ink-muted max-w-xl leading-relaxed font-serif">
+        西門的大樓、地下街的長廊、還有光華安靜吹冷氣的展櫃。隨手記下一點走道寬窄、冷氣溫度，還有轉角適合發呆的小長凳。
       </p>
 
       <!-- 快速篩選列 -->
-      <div class="flex flex-wrap items-center gap-2 mt-6">
-        <span class="text-xs font-serif font-bold text-ink mr-2">商圈聚落:</span>
+      <div class="flex flex-wrap items-center gap-2 mt-6 text-xs">
+        <span class="font-serif font-bold text-ink mr-2">常去的街區:</span>
         {clusters.map(cluster => (
           <a 
             href={cluster === "全部" ? "/taipei-anime-walk/spots" : `/taipei-anime-walk/spots?cluster=${encodeURIComponent(cluster)}`}
-            class="text-xs px-3 py-1.5 rounded-full border border-paper-border bg-white text-ink-muted hover:text-ink hover:border-ink-muted transition"
+            class="px-3 py-1.5 rounded-full border border-paper-border bg-white text-ink-muted hover:text-ink hover:border-ink-muted transition"
           >
             {cluster}
           </a>

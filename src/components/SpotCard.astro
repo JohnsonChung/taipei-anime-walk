@@ -33,12 +33,12 @@ const isArchive = status === "archive";
       </span>
       {isArchive ? (
         <span class="stamp-badge">
-          時光膠囊 {closed_year ? `• ${closed_year} 歇業` : ''}
+          留在昨天 {closed_year ? `• ${closed_year}` : ''}
         </span>
       ) : (
         <span class="text-[10px] text-accent font-medium flex items-center gap-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
-          活躍中
+          <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+          開著呢
         </span>
       )}
     </div>
@@ -51,7 +51,7 @@ const isArchive = status === "archive";
     </h4>
 
     <!-- 一句話氛圍 -->
-    <p class="text-xs text-ink-muted leading-relaxed mb-3">
+    <p class="text-xs text-ink-muted leading-relaxed mb-3 font-serif">
       {vibe}
     </p>
 
@@ -66,7 +66,7 @@ const isArchive = status === "archive";
   </div>
 
   <div>
-    <!-- 體感指標 -->
+    <!-- 體感小提示 -->
     <div class="pt-3 border-t border-paper-border/60 flex flex-wrap gap-1.5 text-[11px]">
       <span class="badge-backpack">
         🎒 {backpack_friendly}
@@ -78,9 +78,9 @@ const isArchive = status === "archive";
 
     <!-- 底部連結 -->
     <div class="pt-3 mt-1 flex items-center justify-between text-[11px] text-ink-light">
-      <span class="font-mono">{contributor}</span>
+      <span class="font-mono text-[10px]">{contributor}</span>
       <a href={`/taipei-anime-walk/spots/${spot.slug}`} class="font-medium text-ink hover:text-accent flex items-center gap-1 transition">
-        筆記細節 ➔
+        看看隨筆 ➔
       </a>
     </div>
   </div>
