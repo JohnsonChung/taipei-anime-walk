@@ -2,7 +2,7 @@
 
 > 一本帶著個人品味、同好黑話、體感溫度與文化記憶的**「台北二次元線上風格獨立誌（Webzine）兼散步地圖」**。
 
-[![Deploy to GitHub Pages](https://github.com/taipei-anime-walk/taipei-anime-walk/actions/workflows/deploy.yml/badge.svg)](https://github.com/taipei-anime-walk/taipei-anime-walk/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/JohnsonChung/taipei-anime-walk/actions/workflows/deploy.yml/badge.svg)](https://github.com/JohnsonChung/taipei-anime-walk/actions/workflows/deploy.yml)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 ---
@@ -46,7 +46,7 @@
 
 ```bash
 # 1. 複製專案庫
-git clone https://github.com/taipei-anime-walk/taipei-anime-walk.git
+git clone https://github.com/JohnsonChung/taipei-anime-walk.git
 cd taipei-anime-walk
 
 # 2. 安裝相依套件
