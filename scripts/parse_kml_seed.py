@@ -41,18 +41,18 @@ def parse_kml_file(kml_path: Path):
     ns = {"kml": "http://www.opengis.net/kml/2.2"}
     
     placemarks = []
-    for pm in root.findall(".//kml:Placemark", ns) or root.findall(".//Placemark"):
-        name_elem = pm.find("kml:name", ns) or pm.find("name")
+    for pm in root.findall(".//kml:Placemark", ns) if root.find(".//kml:Placemark", ns) is not None else root.findall(".//Placemark"):
+        name_elem = pm.find("kml:name", ns) if pm.find("kml:name", ns) is not None else pm.find("name")
         name = name_elem.text.strip() if name_elem is not None and name_elem.text else "未命名點位"
 
         # 關鍵字過濾
         if any(bad in name for bad in EXCLUDE_KEYWORDS):
             continue
 
-        desc_elem = pm.find("kml:description", ns) or pm.find("description")
+        desc_elem = pm.find("kml:description", ns) if pm.find("kml:description", ns) is not None else pm.find("description")
         desc = desc_elem.text.strip() if desc_elem is not None and desc_elem.text else ""
 
-        coord_elem = pm.find(".//kml:coordinates", ns) or pm.find(".//coordinates")
+        coord_elem = pm.find(".//kml:coordinates", ns) if pm.find(".//kml:coordinates", ns) is not None else pm.find(".//coordinates")
         coords = [0.0, 0.0]
         if coord_elem is not None and coord_elem.text:
             parts = coord_elem.text.strip().split(",")

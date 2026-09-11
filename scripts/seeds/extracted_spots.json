@@ -1,1 +1,1064 @@
-[]
+[
+  {
+    "name": "animate 台北店",
+    "coordinates": [
+      121.5095,
+      25.0453
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "雖然總是被笑是盤子美特，但是不能否認他的齊全程度，新手入門必逛的店"
+  },
+  {
+    "name": "一抽入魂 ToyStore 台北車站店",
+    "coordinates": [
+      121.5162,
+      25.0453
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "種類豐富，價格偏貴，適合逛街，消費請冷靜"
+  },
+  {
+    "name": "一抽入魂西門萬年店",
+    "coordinates": [
+      121.506,
+      25.0436
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "種類豐富，價格偏貴，適合逛，消費請冷靜"
+  },
+  {
+    "name": "JUNKUDO淳久堂書店-南港店",
+    "coordinates": [
+      121.6176,
+      25.0593
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "jump shop的相片機和很多的漫畫原畫周邊"
+  },
+  {
+    "name": "紀伊國屋書店 台北微風店",
+    "coordinates": [
+      121.5443,
+      25.0459
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "jump shop的相片機，不確定有沒有周邊"
+  },
+  {
+    "name": "雜誌瘋 西門店",
+    "coordinates": [
+      121.5082,
+      25.0445
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "種類豐富，有時候能發現絕版的酷東西"
+  },
+  {
+    "name": "雜誌瘋 永華店",
+    "coordinates": [
+      121.506,
+      25.0436
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "種類豐富，有時候能發現絕版的酷東西"
+  },
+  {
+    "name": "雜誌瘋北街店",
+    "coordinates": [
+      121.5156,
+      25.0491
+    ],
+    "cluster": "台北地下街",
+    "raw_description": "種類豐富，有時候能發現絕版的酷東西"
+  },
+  {
+    "name": "雜誌瘋 台大店",
+    "coordinates": [
+      121.5338,
+      25.0146
+    ],
+    "cluster": "公館台大",
+    "raw_description": "種類豐富，有時候能發現絕版的酷東西"
+  },
+  {
+    "name": "買動漫台北旗艦店",
+    "coordinates": [
+      121.5155,
+      25.0454
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "販售台灣出版社出版之漫畫、輕小說、畫冊，日本進口周邊，以及買動漫生產銷售之同人誌和周邊。"
+  },
+  {
+    "name": "木棉花樂園-台北地下街門市(Y區11.12號店舖-近捷運北門站Y25出口)",
+    "coordinates": [
+      121.5112,
+      25.0502
+    ],
+    "cluster": "台北地下街",
+    "raw_description": "不解釋我大哥"
+  },
+  {
+    "name": "寶可夢中心台北",
+    "coordinates": [
+      121.5673,
+      25.0364
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "這個也不解釋"
+  },
+  {
+    "name": "傑仕登任天堂授權商品旗艦中心A11",
+    "coordinates": [
+      121.5673,
+      25.0365
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "不解釋"
+  },
+  {
+    "name": "展碁Weblink 任天堂授權商品旗艦店LaLaport南港門市",
+    "coordinates": [
+      121.6176,
+      25.0593
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "萬代官方扭蛋專門店 att門市",
+    "coordinates": [
+      121.5661,
+      25.0353
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "錢不是你的，是萬代的"
+  },
+  {
+    "name": "萬代官方扭蛋專門店 宏匯門市",
+    "coordinates": [
+      121.4493,
+      25.0598
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "錢不是你的，是萬代的"
+  },
+  {
+    "name": "primaniacs 台北三創店",
+    "coordinates": [
+      121.5313,
+      25.0455
+    ],
+    "cluster": "光華三創",
+    "raw_description": "7F，有地標我再換新的，專門出動漫角色香水的店面。"
+  },
+  {
+    "name": "animate 台北店",
+    "coordinates": [
+      121.5095,
+      25.0453
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "你想得到的應該都有"
+  },
+  {
+    "name": "紀伊國屋書店 台北微風店",
+    "coordinates": [
+      121.5443,
+      25.0459
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "雜誌、日版漫畫"
+  },
+  {
+    "name": "JUNKUDO淳久堂書店-南港店",
+    "coordinates": [
+      121.6176,
+      25.0593
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "雜誌、日版漫畫"
+  },
+  {
+    "name": "淳久堂 台北明曜店",
+    "coordinates": [
+      121.5522,
+      25.041
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "雜誌、日版漫畫<br>不確定有沒有jump shop"
+  },
+  {
+    "name": "雜誌瘋 台大店",
+    "coordinates": [
+      121.5338,
+      25.0146
+    ],
+    "cluster": "公館台大",
+    "raw_description": "雜誌、畫冊"
+  },
+  {
+    "name": "雜誌瘋北街店",
+    "coordinates": [
+      121.5156,
+      25.0491
+    ],
+    "cluster": "台北地下街",
+    "raw_description": "雜誌、畫冊，店面比較小"
+  },
+  {
+    "name": "雜誌瘋 永華店",
+    "coordinates": [
+      121.506,
+      25.0436
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "雜誌、畫冊"
+  },
+  {
+    "name": "雜誌瘋 西門店",
+    "coordinates": [
+      121.5082,
+      25.0445
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "雜誌、畫冊"
+  },
+  {
+    "name": "買動漫台北旗艦店",
+    "coordinates": [
+      121.5155,
+      25.0454
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "販售台灣出版社出版之漫畫、輕小說、畫冊，日本進口周邊，以及買動漫生產銷售之同人誌和周邊"
+  },
+  {
+    "name": "蜜瓜書店動漫有限公司",
+    "coordinates": [
+      121.5113,
+      25.0447
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "同人誌 、同人CD、漫畫<br>在六樓，地標出來會再替換"
+  },
+  {
+    "name": "虎之穴台北店",
+    "coordinates": [
+      121.5143,
+      25.0459
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "animate 西門站 POPUP SHOP & Gratte",
+    "coordinates": [
+      121.5088,
+      25.0439
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "傳說中的西門地下街"
+  },
+  {
+    "name": "駿河屋 誠品西門店",
+    "coordinates": [
+      121.5053,
+      25.0437
+    ],
+    "cluster": "西門商圈",
+    "raw_description": ""
+  },
+  {
+    "name": "駿河屋 台北明曜店",
+    "coordinates": [
+      121.552,
+      25.0412
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "駿河屋 中山地下街店",
+    "coordinates": [
+      121.5204,
+      25.0508
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "指南針 Lashinbang 站前地下街店",
+    "coordinates": [
+      121.5157,
+      25.0463
+    ],
+    "cluster": "台北地下街",
+    "raw_description": "以二手商品為主，店面比較小"
+  },
+  {
+    "name": "指南針 站前地下街店 2號館",
+    "coordinates": [
+      121.5139,
+      25.047
+    ],
+    "cluster": "台北地下街",
+    "raw_description": ""
+  },
+  {
+    "name": "指南針 Lashinbang 誠品生活武昌店",
+    "coordinates": [
+      121.5058,
+      25.0453
+    ],
+    "cluster": "西門商圈",
+    "raw_description": ""
+  },
+  {
+    "name": "指南針 Lashinbang 三創生活店",
+    "coordinates": [
+      121.531,
+      25.0453
+    ],
+    "cluster": "光華三創",
+    "raw_description": "以二手商品為主"
+  },
+  {
+    "name": "animate 台北店",
+    "coordinates": [
+      121.5095,
+      25.0453
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "有一區指南針寄賣"
+  },
+  {
+    "name": "駿河屋 台北明曜店",
+    "coordinates": [
+      121.552,
+      25.0412
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "駿河屋 誠品西門店",
+    "coordinates": [
+      121.5053,
+      25.0437
+    ],
+    "cluster": "西門商圈",
+    "raw_description": ""
+  },
+  {
+    "name": "駿河屋 中山地下街店",
+    "coordinates": [
+      121.5204,
+      25.0508
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "哈比沃福 hobby off",
+    "coordinates": [
+      121.5162,
+      25.0474
+    ],
+    "cluster": "台北地下街",
+    "raw_description": ""
+  },
+  {
+    "name": "豬帽子Boarhat(中和店)",
+    "coordinates": [
+      121.4988,
+      25.0023
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "豬帽子Boarhat(西門店)",
+    "coordinates": [
+      121.5048,
+      25.0453
+    ],
+    "cluster": "西門商圈",
+    "raw_description": ""
+  },
+  {
+    "name": "豬帽子Boarhat(南崁店)",
+    "coordinates": [
+      121.2915,
+      25.0468
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "豬帽子-林口昕境店",
+    "coordinates": [
+      121.3689,
+      25.0737
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "豬帽子 Boarhat 環球A19店",
+    "coordinates": [
+      121.2025,
+      25.002
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "野獸國 三創店",
+    "coordinates": [
+      121.5311,
+      25.0455
+    ],
+    "cluster": "光華三創",
+    "raw_description": "以公仔、盒玩、盲抽為主，會掉落少量的周邊"
+  },
+  {
+    "name": "BEAST KINGDOM 野獸國 誠品新店店",
+    "coordinates": [
+      121.5465,
+      24.9781
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "以公仔、盒玩、盲抽為主，會掉落少量的周邊"
+  },
+  {
+    "name": "BEAST KINGDOM 野獸國 誠品武昌店",
+    "coordinates": [
+      121.5056,
+      25.0452
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "以公仔、盒玩、盲抽為主，會掉落少量的周邊"
+  },
+  {
+    "name": "TOYeGO 玩具e哥 台北松山店",
+    "coordinates": [
+      121.5781,
+      25.0469
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "以公仔、盒玩、盲抽、一番賞為主"
+  },
+  {
+    "name": "振光玩具 ASIA GOAL - 台北三創店",
+    "coordinates": [
+      121.5311,
+      25.0455
+    ],
+    "cluster": "光華三創",
+    "raw_description": "以公仔為主"
+  },
+  {
+    "name": "振光玩具 ASIA GOAL - 誠品武昌店",
+    "coordinates": [
+      121.5057,
+      25.0451
+    ],
+    "cluster": "西門商圈",
+    "raw_description": ""
+  },
+  {
+    "name": "TOYeGO 玩具e哥 站前地下街",
+    "coordinates": [
+      121.5156,
+      25.0466
+    ],
+    "cluster": "台北地下街",
+    "raw_description": "以公仔、盒玩、盲抽、一番賞為主"
+  },
+  {
+    "name": "TOYeGO 玩具e哥台北大道一店",
+    "coordinates": [
+      121.5141,
+      25.049
+    ],
+    "cluster": "台北地下街",
+    "raw_description": "以公仔、盒玩、盲抽、一番賞為主"
+  },
+  {
+    "name": "TOYeGO 玩具e哥 台北康寧店",
+    "coordinates": [
+      121.6116,
+      25.0699
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "TOYeGO 玩具e哥 台北松山店",
+    "coordinates": [
+      121.5776,
+      25.0441
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "玩具e哥 大道二店",
+    "coordinates": [
+      121.5127,
+      25.0499
+    ],
+    "cluster": "台北地下街",
+    "raw_description": "以公仔、盒玩、盲抽、一番賞為主"
+  },
+  {
+    "name": "玩具e哥 土城裕民店",
+    "coordinates": [
+      121.4511,
+      24.9863
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "以公仔、盒玩、盲抽、一番賞為主"
+  },
+  {
+    "name": "玩具e哥 中和威力店",
+    "coordinates": [
+      121.4957,
+      25.0019
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "以公仔、盒玩、盲抽、一番賞為主"
+  },
+  {
+    "name": "玩具e哥 新店中央店",
+    "coordinates": [
+      121.5298,
+      24.9726
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "以公仔、盒玩、盲抽、一番賞為主"
+  },
+  {
+    "name": "玩具e哥 新店建國店",
+    "coordinates": [
+      121.5378,
+      24.9833
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "以公仔、盒玩、盲抽、一番賞為主"
+  },
+  {
+    "name": "玩具e哥 文山忠順店",
+    "coordinates": [
+      121.5632,
+      24.9846
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "以公仔、盒玩、盲抽、一番賞為主"
+  },
+  {
+    "name": "玩具e哥 北門店",
+    "coordinates": [
+      121.5102,
+      25.0496
+    ],
+    "cluster": "台北地下街",
+    "raw_description": ""
+  },
+  {
+    "name": "東海模型玩具-萬年總店",
+    "coordinates": [
+      121.5059,
+      25.0435
+    ],
+    "cluster": "西門商圈",
+    "raw_description": ""
+  },
+  {
+    "name": "東海模型玩具-峨眉店",
+    "coordinates": [
+      121.5058,
+      25.0444
+    ],
+    "cluster": "西門商圈",
+    "raw_description": ""
+  },
+  {
+    "name": "東海模型玩具-華山店",
+    "coordinates": [
+      121.5287,
+      25.0408
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "東海模型玩具-武昌誠品專櫃",
+    "coordinates": [
+      121.5056,
+      25.0452
+    ],
+    "cluster": "西門商圈",
+    "raw_description": ""
+  },
+  {
+    "name": "Hobby World 台北DREAM PLAZA店",
+    "coordinates": [
+      121.5659,
+      25.0397
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "外面有一整櫃的look up"
+  },
+  {
+    "name": "南港環球Toy World",
+    "coordinates": [
+      121.6072,
+      25.0529
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "lookup、公仔、一番賞"
+  },
+  {
+    "name": "TOY WORLD",
+    "coordinates": [
+      121.6148,
+      25.0586
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "lookup、公仔、一番賞"
+  },
+  {
+    "name": "TOYWORLD 美麗華店",
+    "coordinates": [
+      121.5573,
+      25.0837
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "TOY WORLD 三重佳瑪店",
+    "coordinates": [
+      121.4969,
+      25.0667
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "toyworld新莊佳瑪店",
+    "coordinates": [
+      121.4478,
+      25.049
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "TOY WORLD 中和環球店",
+    "coordinates": [
+      121.475,
+      25.0066
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "Toyworld板橋環球",
+    "coordinates": [
+      121.4636,
+      25.0142
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "臺灣漫畫基地 Taiwan Comic Base",
+    "coordinates": [
+      121.5161,
+      25.05
+    ],
+    "cluster": "台北地下街",
+    "raw_description": "以臺灣作品為主，可以來朝聖看看"
+  },
+  {
+    "name": "西門地下街",
+    "coordinates": [
+      121.5093,
+      25.0452
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "下雨時可以去的好地方"
+  },
+  {
+    "name": "萬年大樓",
+    "coordinates": [
+      121.5057,
+      25.0438
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "有些店舖臭名昭著，尤其在一番賞方面有藏簽前科，不建議新手直接去消費，建議做好功課"
+  },
+  {
+    "name": "R79",
+    "coordinates": [
+      121.5205,
+      25.0553
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "誠品書街，其實整體偏文青風格，但會有快閃，比方現在最紅的宅一番，有在推廣臺灣作品，學生逛完後可以去雙連的文昌宮拜拜。"
+  },
+  {
+    "name": "三創",
+    "coordinates": [
+      121.531,
+      25.0456
+    ],
+    "cluster": "光華三創",
+    "raw_description": "冷氣真的很涼，建議擦乾汗再進去，不然會感冒，每個樓層都有椅子，真的適合逛街。"
+  },
+  {
+    "name": "台北地下街",
+    "coordinates": [
+      121.5106,
+      25.0503
+    ],
+    "cluster": "台北地下街",
+    "raw_description": "商家很多，商品也很多元，很適合逛街，但同樣是某些店家臭名昭著，不建議新手直接去消費，建議做好功課才會逛得比較開心。假日在廣場會有市集擺攤，會有不少日版周邊掉落。"
+  },
+  {
+    "name": "南港lalaport",
+    "coordinates": [
+      121.6177,
+      25.0605
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "雖然食物不好吃，但是逛街還是滿不錯的，除了jump shop，也有三麗鷗扭蛋和公仔店。一樓也有哈利波特專店。"
+  },
+  {
+    "name": "animate cafe 台北北門店",
+    "coordinates": [
+      121.5115,
+      25.0461
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "快閃咖啡廳不一定都是這幾家，還是要以實際消息為主，但動漫主題咖啡廳的重點是動漫，圖好看周邊好看比較是重點，餐點飲料方面期望值最好放低，人生會快樂很多"
+  },
+  {
+    "name": "FANFANS CAFÉ 粉粉快閃主題餐廳",
+    "coordinates": [
+      121.5052,
+      25.0449
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "快閃咖啡廳不一定都是這幾家，還是要以實際消息為主，但動漫主題咖啡廳的重點是動漫，圖好看周邊好看比較是重點，餐點飲料方面期望值最好放低，人生會快樂很多"
+  },
+  {
+    "name": "MyAnime Café 動漫主題咖啡廳",
+    "coordinates": [
+      121.5313,
+      25.0453
+    ],
+    "cluster": "光華三創",
+    "raw_description": "快閃咖啡廳不一定都是這幾家，還是要以實際消息為主，但動漫主題咖啡廳的重點是動漫，圖好看周邊好看比較是重點，餐點飲料方面期望值最好放低，人生會快樂很多"
+  },
+  {
+    "name": "animate cafe 台北西門店",
+    "coordinates": [
+      121.5098,
+      25.0454
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "快閃咖啡廳不一定都是這幾家，還是要以實際消息為主，但動漫主題咖啡廳的重點是動漫，圖好看周邊好看比較是重點，餐點飲料方面期望值最好放低，人生會快樂很多"
+  },
+  {
+    "name": "ふるいち×マンガ展 (FURU1 × manga10) 漫畫展 台灣",
+    "coordinates": [
+      121.5112,
+      25.0453
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "看官網簡介是以漫畫為主，會辦展覽，但我沒去過"
+  },
+  {
+    "name": "CWT",
+    "coordinates": [
+      121.5351,
+      25.0217
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "CWT(同人誌，女性向多)"
+  },
+  {
+    "name": "FF",
+    "coordinates": [
+      121.5208,
+      25.0696
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "FF(同人誌，男性向多)"
+  },
+  {
+    "name": "NiCE",
+    "coordinates": [
+      121.6181,
+      25.0566
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "NiCE(同人誌，希望每年都能看到你)"
+  },
+  {
+    "name": "華山1914文化創意產業園區",
+    "coordinates": [
+      121.5294,
+      25.0441
+    ],
+    "cluster": "光華三創",
+    "raw_description": "不少快閃店會在這裡，還是請等官方消息"
+  },
+  {
+    "name": "新光三越 A11",
+    "coordinates": [
+      121.5673,
+      25.0366
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "不少快閃店會在這裡，還是請等官方消息"
+  },
+  {
+    "name": "d/art taipei",
+    "coordinates": [
+      121.508,
+      25.0443
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "串友推薦，看官方FB是以日本繪師展覽為主，有興趣的人可以看看。"
+  },
+  {
+    "name": "松山文創園區",
+    "coordinates": [
+      121.5606,
+      25.0438
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "快閃店、原畫展，大巨蛋秀泰也在附近。<br>以官方消息為主"
+  },
+  {
+    "name": "國立臺灣科學教育館",
+    "coordinates": [
+      121.5165,
+      25.0963
+    ],
+    "cluster": "獨立散點",
+    "raw_description": "7樓會辦展覽，以官方消息為主"
+  },
+  {
+    "name": "三創生活園區",
+    "coordinates": [
+      121.5313,
+      25.0455
+    ],
+    "cluster": "光華三創",
+    "raw_description": "6樓有展廳，以官方消息為主"
+  },
+  {
+    "name": "京站時尚廣場",
+    "coordinates": [
+      121.5172,
+      25.0493
+    ],
+    "cluster": "台北地下街",
+    "raw_description": "有些快閃店會辦在一樓"
+  },
+  {
+    "name": "fanfancy＋ with GiGO Garden City 台北",
+    "coordinates": [
+      121.5595,
+      25.0424
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "DAISO大創百貨 台北明曜店",
+    "coordinates": [
+      121.552,
+      25.0412
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "DAISO大創百貨 東區MIKI Plaza店",
+    "coordinates": [
+      121.5463,
+      25.0419
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "DAISO大創百貨 台北永康店",
+    "coordinates": [
+      121.5305,
+      25.0331
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "大創百貨 南西店",
+    "coordinates": [
+      121.5221,
+      25.0525
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "大創百貨 台北慶城店",
+    "coordinates": [
+      121.5449,
+      25.0527
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "DAISO大創百貨 南港環球店",
+    "coordinates": [
+      121.6083,
+      25.0531
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "DAISO大創百貨 台北站前店",
+    "coordinates": [
+      121.516,
+      25.0454
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "DAISO大創百貨 台北東森廣場店",
+    "coordinates": [
+      121.5162,
+      25.0474
+    ],
+    "cluster": "台北地下街",
+    "raw_description": ""
+  },
+  {
+    "name": "Icolor台北車站店",
+    "coordinates": [
+      121.5174,
+      25.0488
+    ],
+    "cluster": "台北地下街",
+    "raw_description": ""
+  },
+  {
+    "name": "icolor 永和頂溪店",
+    "coordinates": [
+      121.515,
+      25.0111
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "icolor愛色彩(板橋環球店)",
+    "coordinates": [
+      121.4639,
+      25.0144
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "icolor 陽明店",
+    "coordinates": [
+      121.4665,
+      25.0215
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "icolor樹林秀泰店",
+    "coordinates": [
+      121.4284,
+      24.9955
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "i color 雙城店",
+    "coordinates": [
+      121.5242,
+      25.0646
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "i color公館店",
+    "coordinates": [
+      121.5355,
+      25.0134
+    ],
+    "cluster": "公館台大",
+    "raw_description": ""
+  },
+  {
+    "name": "WEGO TOKYO 誠品生活武昌店",
+    "coordinates": [
+      121.5057,
+      25.0452
+    ],
+    "cluster": "西門商圈",
+    "raw_description": "包包類"
+  },
+  {
+    "name": "GAME休閒館 台北三創店",
+    "coordinates": [
+      121.5311,
+      25.0455
+    ],
+    "cluster": "光華三創",
+    "raw_description": ""
+  },
+  {
+    "name": "GAME休閒館 板橋大遠百門市",
+    "coordinates": [
+      121.467,
+      25.0137
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "Game休閒館-新北永和店",
+    "coordinates": [
+      121.5225,
+      25.0068
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  },
+  {
+    "name": "Game休閒館中和環球門市",
+    "coordinates": [
+      121.4748,
+      25.0067
+    ],
+    "cluster": "獨立散點",
+    "raw_description": ""
+  }
+]
