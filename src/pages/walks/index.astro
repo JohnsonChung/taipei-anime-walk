@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WalkCard from '../../components/WalkCard.astro';
+import { getCollection } from 'astro:content';
+
+const allWalks = await getCollection('walks');
+
+// 取得所有商圈分類
+const rawClusters = Array.from(new Set(allWalks.map(w => w.data.target_cluster)));
+const clusters = ["全部", ...rawClusters];
+---
+
+<BaseLayout 
+  title="漫無目的的一日路線 | 台北動漫散步指南"
+  description="不用急著把點踩完。挑一條舒服的路線，順著午後微風與心情慢慢逛，走累了隨時停下來發呆。"
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+    <!-- 頁頭 -->
+    <div class="border-b border-paper-border pb-8 mb-8">
+      <div class="flex items-center gap-2 text-[11px] font-mono text-ink-light mb-2">
+        <span>WALK ROUTES</span>
+        <span>•</span>
+        <span>漫無目的的一日路線</span>
+      </div>
+
+      <h1 class="font-serif font-black text-2xl sm:text-3xl lg:text-4xl text-ink tracking-tight mb-3">
+        今天想挑哪一條路出發？
+      </h1>
+      <p class="text-sm sm:text-base text-ink-muted max-w-2xl leading-relaxed font-serif">
+        街角吹來的冷氣微風、沒拆封模型盒特有的紙箱油墨味，還有那些走累了就坐下來喝口茶的避難所。沒有非去不可的打卡景點，挑一條步調剛好的路線，隨性出發就好。
+      </p>
+
+      <!-- 商圈切換晶片 -->
+      <div class="flex flex-wrap items-center gap-2 mt-6 text-xs">
+        <span class="font-serif font-bold text-ink mr-2">商圈聚落:</span>
+        {clusters.map((cluster, idx) => (
+          <button 
+            type="button"
+            data-cluster-filter={cluster}
+            class={`cluster-filter-btn px-3 py-1.5 rounded-full border transition font-medium cursor-pointer ${
+              idx === 0 
+                ? 'bg-accent text-white border-accent active' 
+                : 'bg-white border-paper-border text-ink-muted hover:text-ink hover:border-ink-muted'
+            }`}
+          >
+            {cluster}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- 路線卡片列表 -->
+    <div id="walks-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {allWalks.map(walk => (
+        <div class="walk-card-wrapper" data-cluster={walk.data.target_cluster} data-stamina={walk.data.total_stamina_cost}>
+          <WalkCard walk={walk} />
+        </div>
+      ))}
+    </div>
+
+    <!-- 無結果提示 (以備篩選時使用) -->
+    <div id="no-walks-found" class="hidden py-16 text-center text-ink-muted font-serif text-sm">
+      這個商圈目前還沒有專門的散步路線隨筆，先到別處走走吧。
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  function setupWalkFilters() {
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.cluster-filter-btn');
+    const walkCards = document.querySelectorAll<HTMLElement>('.walk-card-wrapper');
+    const emptyNotice = document.getElementById('no-walks-found');
+
+    function filterByCluster(targetCluster: string) {
+      let visibleCount = 0;
+
+      filterButtons.forEach(btn => {
+        const btnCluster = btn.getAttribute('data-cluster-filter');
+        if (btnCluster === targetCluster) {
+          btn.classList.add('bg-accent', 'text-white', 'border-accent', 'active');
+          btn.classList.remove('bg-white', 'text-ink-muted', 'border-paper-border');
+        } else {
+          btn.classList.remove('bg-accent', 'text-white', 'border-accent', 'active');
+          btn.classList.add('bg-white', 'text-ink-muted', 'border-paper-border');
+        }
+      });
+
+      walkCards.forEach(card => {
+        const cardCluster = card.getAttribute('data-cluster');
+        if (targetCluster === '全部' || cardCluster === targetCluster) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (emptyNotice) {
+        if (visibleCount === 0) {
+          emptyNotice.classList.remove('hidden');
+        } else {
+          emptyNotice.classList.add('hidden');
+        }
+      }
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cluster = btn.getAttribute('data-cluster-filter') || '全部';
+        filterByCluster(cluster);
+
+        const url = new URL(window.location.href);
+        if (cluster === '全部') {
+          url.searchParams.delete('cluster');
+        } else {
+          url.searchParams.set('cluster', cluster);
+        }
+        window.history.replaceState({}, '', url.toString());
+      });
+    });
+
+    const initialCluster = new URLSearchParams(window.location.search).get('cluster');
+    if (initialCluster) {
+      filterByCluster(initialCluster);
+    }
+  }
+
+  setupWalkFilters();
+  document.addEventListener('astro:page-load', setupWalkFilters);
+</script>
