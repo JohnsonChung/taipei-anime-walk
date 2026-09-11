@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SpotCard from '../components/SpotCard.astro';
+import { getCollection } from 'astro:content';
+
+const allSpots = await getCollection('spots');
+const archiveSpots = allSpots.filter(s => s.data.status === 'archive');
+---
+
+<BaseLayout title="時光膠囊：台北二次元歇業名店記憶 | 台北動漫散步指南">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+    <!-- 頁頭 -->
+    <div class="border-b border-paper-border pb-8 mb-10">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="stamp-badge">
+          TIME CAPSULE ARCHIVE
+        </span>
+        <span class="text-xs font-mono text-archive">文化記憶保留區</span>
+      </div>
+
+      <h1 class="font-serif font-black text-3xl sm:text-5xl text-ink tracking-tight mb-4">
+        時光膠囊：歇業名店文化記憶
+      </h1>
+
+      <p class="text-base text-ink-muted leading-relaxed max-w-2xl font-serif">
+        在實體商業快速更迭的台北，鐵捲門拉下並不代表記憶被抹滅。我們堅持「不刪除、蓋上時光膠囊印章」，讓那些曾在少年時代照亮過我們的漫畫屋、模型攤與同人小舖，永遠沉澱為這座城市的文化地景史。
+      </p>
+    </div>
+
+    {archiveSpots.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {archiveSpots.map(spot => (
+          <SpotCard spot={spot} />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-16 bg-white rounded-2xl border border-paper-border">
+        <p class="text-sm text-ink-muted font-serif">目前尚未有封存點位</p>
+      </div>
+    )}
+
+    <!-- 投稿時光膠囊說明 -->
+    <div class="mt-16 bg-archive-bg/40 border border-archive/30 rounded-2xl p-8">
+      <h3 class="font-serif font-bold text-lg text-ink mb-2">
+        📬 記錄你記憶中的台北二次元老店
+      </h3>
+      <p class="text-xs text-ink-muted leading-relaxed mb-4">
+        若你發現有具備文化代表性的老店已停業，歡迎至 GitHub 提交「時光膠囊封存」Issue。請附上概略歇業年份與它曾帶給同好的獨特回憶。
+      </p>
+      <a 
+        href="https://github.com" 
+        target="_blank" 
+        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-archive-stamp text-white text-xs font-medium hover:opacity-90 transition"
+      >
+        <span>提交時光膠囊 Issue</span>
+        <span>↗</span>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

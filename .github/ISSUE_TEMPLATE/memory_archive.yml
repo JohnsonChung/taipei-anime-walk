@@ -1,0 +1,31 @@
+﻿name: "🕰️ [時光膠囊] 歇業名店文化記憶封存"
+description: "通報已歇業之台北二次元經典店家，將其轉換並定格為時光膠囊"
+title: "[時光膠囊封存]: "
+labels: ["memory-archive", "triage-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        老店拉下鐵捲門，並不代表回憶被抹滅。請協助我們將該店在台北二次元地景發展史中的座標永久封存。
+  - type: input
+    id: spot_name
+    attributes:
+      label: 歇業店家名稱
+      placeholder: "例如：舊西門漫畫便利屋、光華某老書店"
+    validations:
+      required: true
+  - type: input
+    id: closed_year
+    attributes:
+      label: 歇業年份 (概略即可)
+      placeholder: "例如：2018 年前後"
+    validations:
+      required: true
+  - type: textarea
+    id: memory_vault
+    attributes:
+      label: 時光膠囊印記 (共同回憶與歷史意義)
+      description: "這家店曾帶給你或當年台北動漫圈什麼獨特的回憶？"
+      placeholder: "那是智慧手機普及前，每週五大家擠在窄門口等日雜開箱的啟蒙地..."
+    validations:
+      required: true

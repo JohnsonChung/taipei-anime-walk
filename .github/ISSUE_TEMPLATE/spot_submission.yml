@@ -1,0 +1,83 @@
+﻿name: "📍 [點位投稿] 台北私房動漫店家或挖寶角落"
+description: "向編輯部推薦台北值得收錄的動漫模型、同人精品或特色二次元店家"
+title: "[新點位]: "
+labels: ["spot-submission", "triage-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感謝你為《台北動漫散步指南》添磚加瓦！請依據你的真實走訪體感填寫以下欄位。
+        **請注意**：本指南拒絕無意義的五星公關文，請多著墨於空間感官、走道動線與同好避坑提醒。
+  - type: input
+    id: spot_name
+    attributes:
+      label: 店家或聚落名稱
+      placeholder: "例如：萬年商業大樓 4 樓模型聚落"
+    validations:
+      required: true
+  - type: dropdown
+    id: cluster
+    attributes:
+      label: 所屬商圈聚落
+      options:
+        - 西門商圈
+        - 台北地下街
+        - 光華三創
+        - 公館台大
+        - 台北車站周邊
+        - 獨立散點
+    validations:
+      required: true
+  - type: input
+    id: coordinates
+    attributes:
+      label: 座標或 Google Maps 連結
+      placeholder: "例如：121.5065, 25.0440 或貼上 Google Maps 分享網址"
+    validations:
+      required: true
+  - type: checkboxes
+    id: spot_type
+    attributes:
+      label: 主力特色標籤 (可複選)
+      options:
+        - label: 模型 / 鋼普拉
+        - label: 景品公仔 / 盒玩
+        - label: 日系動漫精品 / 官方周邊
+        - label: 同人誌 / 二手本 / 畫冊
+        - label: 扭蛋專門
+        - label: 卡牌對戰
+        - label: 老玩具挖寶 / 絕版品
+        - label: 女僕咖啡 / 概念主題餐飲
+  - type: textarea
+    id: sensory_notes
+    attributes:
+      label: 漫遊者生存筆記 (感官描繪)
+      description: "請描述走進店裡的真實感受（如走道寬度、氣味、燈光氛圍、老店特色）。"
+      placeholder: "手扶梯直上四樓即可聞到獨特的模型紙盒香氣，走道狹窄但逸品極多..."
+    validations:
+      required: true
+  - type: dropdown
+    id: backpack_friendly
+    attributes:
+      label: 背包友善度評估
+      options:
+        - "友善 (通道寬敞，大包可會車)"
+        - "適中 (走道約1米，需側身)"
+        - "極度狹窄 (需前背/卸包，轉身易掃落架上盒裝)"
+    validations:
+      required: true
+  - type: textarea
+    id: pitfall_warning
+    attributes:
+      label: 同好避坑提醒
+      description: "真實走訪才會知道的隱藏細節。"
+      placeholder: "週末午後通道極擠，建議雙肩包前背避免擦撞盒損..."
+    validations:
+      required: true
+  - type: input
+    id: rest_anchor
+    attributes:
+      label: 鄰近 300 公尺推薦歇腳錨點
+      placeholder: "例如：商場 B1 排骨飯座位、中山堂長凳"
+    validations:
+      required: true

@@ -1,0 +1,87 @@
+---
+interface Props {
+  spot: {
+    id: string;
+    slug: string;
+    data: {
+      id: string;
+      name: string;
+      district: string;
+      cluster: string;
+      type: string[];
+      vibe: string;
+      stamina_cost: string;
+      backpack_friendly: string;
+      status: "active" | "archive";
+      closed_year?: number;
+      contributor: string;
+    }
+  }
+}
+
+const { spot } = Astro.props;
+const { name, cluster, type, vibe, stamina_cost, backpack_friendly, status, closed_year, contributor } = spot.data;
+const isArchive = status === "archive";
+---
+
+<article class={`rounded-2xl border p-5 transition-all flex flex-col justify-between ${isArchive ? 'bg-archive-bg/40 border-archive/30' : 'bg-white border-paper-border hover:border-ink-muted/50 hover:shadow-sm'}`}>
+  <div>
+    <!-- 頂部標籤與狀態 -->
+    <div class="flex items-center justify-between gap-2 mb-2.5">
+      <span class="text-[11px] font-medium px-2 py-0.5 rounded-md bg-paper text-ink-muted border border-paper-border">
+        {cluster}
+      </span>
+      {isArchive ? (
+        <span class="stamp-badge">
+          時光膠囊 {closed_year ? `• ${closed_year} 歇業` : ''}
+        </span>
+      ) : (
+        <span class="text-[10px] text-accent font-medium flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+          活躍中
+        </span>
+      )}
+    </div>
+
+    <!-- 店家名稱 -->
+    <h4 class="font-serif font-bold text-base text-ink mb-1.5 leading-snug">
+      <a href={`/spots/${spot.slug}`} class="hover:text-accent transition">
+        {name}
+      </a>
+    </h4>
+
+    <!-- 一句話氛圍 -->
+    <p class="text-xs text-ink-muted leading-relaxed mb-3">
+      {vibe}
+    </p>
+
+    <!-- 標籤分類 -->
+    <div class="flex flex-wrap gap-1.5 mb-4">
+      {type.map(tag => (
+        <span class="text-[10px] px-2 py-0.5 rounded bg-paper text-ink-light font-mono">
+          #{tag}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <div>
+    <!-- 體感指標 -->
+    <div class="pt-3 border-t border-paper-border/60 flex flex-wrap gap-1.5 text-[11px]">
+      <span class="badge-backpack">
+        🎒 {backpack_friendly}
+      </span>
+      <span class="badge-stamina">
+        ⚡ {stamina_cost}
+      </span>
+    </div>
+
+    <!-- 底部連結 -->
+    <div class="pt-3 mt-1 flex items-center justify-between text-[11px] text-ink-light">
+      <span class="font-mono">{contributor}</span>
+      <a href={`/spots/${spot.slug}`} class="font-medium text-ink hover:text-accent flex items-center gap-1 transition">
+        筆記細節 ➔
+      </a>
+    </div>
+  </div>
+</article>

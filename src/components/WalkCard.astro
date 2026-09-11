@@ -1,0 +1,78 @@
+---
+interface Props {
+  walk: {
+    id: string;
+    slug: string;
+    data: {
+      id: string;
+      title: string;
+      subtitle: string;
+      target_cluster: string;
+      estimated_duration: string;
+      total_stamina_cost: number;
+      spot_sequence: string[];
+      loot_sorting_spot: string;
+      rest_anchor: string;
+      featured?: boolean;
+    }
+  }
+}
+
+const { walk } = Astro.props;
+const { title, subtitle, target_cluster, estimated_duration, total_stamina_cost, loot_sorting_spot, rest_anchor, featured } = walk.data;
+---
+
+<article class="bg-white rounded-2xl border border-paper-border hover:border-ink-muted/50 p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+  <div>
+    <!-- 標籤列 -->
+    <div class="flex items-center justify-between gap-2 mb-3">
+      <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-paper-hover text-ink-muted">
+        📍 {target_cluster}
+      </span>
+      <span class="text-xs font-mono text-ink-light flex items-center gap-1">
+        ⏱️ {estimated_duration}
+      </span>
+    </div>
+
+    <!-- 標題與副標 -->
+    <h3 class="font-serif font-bold text-lg text-ink group-hover:text-accent transition leading-snug mb-2">
+      <a href={`/walks/${walk.slug}`}>
+        {title}
+      </a>
+    </h3>
+    <p class="text-xs text-ink-muted leading-relaxed line-clamp-2 mb-4">
+      {subtitle}
+    </p>
+
+    <!-- 體力消耗與指標 -->
+    <div class="border-t border-b border-paper-border/60 py-3 my-3 space-y-2 text-xs">
+      <div class="flex items-center justify-between text-ink-muted">
+        <span>體力消耗指數</span>
+        <div class="flex items-center gap-1 font-mono text-accent">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <span>{i < total_stamina_cost ? "⚡" : "•"}</span>
+          ))}
+          <span class="text-[10px] text-ink-light ml-1">({total_stamina_cost}/5)</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-ink-muted">
+        <span class="text-[11px] text-ink-light">歇腳錨點</span>
+        <span class="text-[11px] font-medium text-ink truncate max-w-[180px]">{rest_anchor}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部按鈕 -->
+  <div class="pt-2 flex items-center justify-between">
+    <span class="text-[11px] text-ink-light font-mono">
+      {walk.data.spot_sequence.length} 處漫遊座標
+    </span>
+    <a 
+      href={`/walks/${walk.slug}`}
+      class="text-xs font-semibold text-accent group-hover:translate-x-1 transition-transform flex items-center gap-1"
+    >
+      探索動線 ➔
+    </a>
+  </div>
+</article>

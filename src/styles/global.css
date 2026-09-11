@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #F9F8F6;
+    color: #22201E;
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: #FCECE9;
+    color: #C84836;
+  }
+}
+
+/* 仿日系小誌紙質微顆粒質感 */
+.paper-texture {
+  background-color: #F9F8F6;
+  background-image: radial-gradient(#E5E2DC 0.75px, transparent 0.75px);
+  background-size: 16px 16px;
+}
+
+/* 時光膠囊印章效果 */
+.stamp-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid #8C4830;
+  color: #8C4830;
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: rotate(-1.5deg);
+  box-shadow: 1px 1px 0px rgba(140, 72, 48, 0.2);
+}
+
+/* 體感指標 Badge */
+.badge-stamina {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  background-color: #F3F0EA;
+  color: #55504A;
+  border: 1px solid #E2DED6;
+}
+
+.badge-backpack {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  background-color: #FEF3EE;
+  color: #B54A37;
+  border: 1px solid #F8D5C8;
+}
+
+/* Leaflet 地圖樣式修飾 */
+.leaflet-container {
+  font-family: inherit;
+  background-color: #EFEFEF;
+}
+
+.custom-cluster-icon {
+  background: #E05A47;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+  box-shadow: 0 0 0 4px rgba(224, 90, 71, 0.25);
+}
