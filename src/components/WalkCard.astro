@@ -4,10 +4,12 @@ interface Props {
     id: string;
     slug: string;
     data: {
-      id: string;
+      id?: string;
       title: string;
       subtitle: string;
       target_cluster: string;
+      starting_point?: string;
+      starting_mrt?: string;
       estimated_duration: string;
       total_stamina_cost: number;
       spot_sequence: string[];
@@ -19,7 +21,18 @@ interface Props {
 }
 
 const { walk } = Astro.props;
-const { title, subtitle, target_cluster, estimated_duration, total_stamina_cost, loot_sorting_spot, rest_anchor, featured } = walk.data;
+const { 
+  title, 
+  subtitle, 
+  target_cluster, 
+  starting_point,
+  starting_mrt,
+  estimated_duration, 
+  total_stamina_cost, 
+  loot_sorting_spot, 
+  rest_anchor, 
+  featured 
+} = walk.data;
 ---
 
 <article class="bg-white rounded-2xl border border-paper-border hover:border-ink-muted/50 p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
@@ -33,6 +46,14 @@ const { title, subtitle, target_cluster, estimated_duration, total_stamina_cost,
         ⏱️ 大約 {estimated_duration}
       </span>
     </div>
+
+    <!-- 出發起點標記 -->
+    {starting_point && (
+      <div class="flex items-center gap-1.5 text-xs text-accent font-medium mb-2 font-mono">
+        <span>🚩 出發起點:</span>
+        <span class="text-ink font-sans truncate">{starting_mrt || starting_point}</span>
+      </div>
+    )}
 
     <!-- 標題與副標 -->
     <h3 class="font-serif font-bold text-base sm:text-lg text-ink group-hover:text-accent transition leading-snug mb-2">

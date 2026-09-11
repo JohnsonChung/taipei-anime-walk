@@ -17,9 +17,15 @@ const allSpots = await getCollection('spots');
 const sequencedSpots = walk.data.spot_sequence
   .map(id => allSpots.find(s => s.data.id === id || s.slug === id))
   .filter(Boolean);
+
+const startCoords = walk.data.starting_coords || [121.5078, 25.0425];
+const googleNavUrl = `https://www.google.com/maps/dir/?api=1&destination=${startCoords[1]},${startCoords[0]}`;
 ---
 
-<BaseLayout title={`${walk.data.title} | 台北動漫散步指南`}>
+<BaseLayout 
+  title={`${walk.data.title} | 台北動漫散步指南`}
+  description={walk.data.subtitle}
+>
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
     <!-- 頂部返回 -->
     <div class="mb-8">
@@ -29,7 +35,7 @@ const sequencedSpots = walk.data.spot_sequence
     </div>
 
     <!-- 標題區域 -->
-    <header class="border-b border-paper-border pb-8 mb-10">
+    <header class="border-b border-paper-border pb-8 mb-8">
       <div class="flex items-center gap-3 mb-3">
         <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-paper-hover text-ink-muted">
           📍 {walk.data.target_cluster}
@@ -42,7 +48,7 @@ const sequencedSpots = walk.data.spot_sequence
       <h1 class="font-serif font-black text-2xl sm:text-3xl text-ink tracking-tight mb-3">
         {walk.data.title}
       </h1>
-      <p class="text-sm text-ink-muted leading-relaxed font-serif">
+      <p class="text-sm sm:text-base text-ink-muted leading-relaxed font-serif">
         {walk.data.subtitle}
       </p>
 
@@ -62,54 +68,248 @@ const sequencedSpots = walk.data.spot_sequence
 
         <div>
           <div class="text-[10px] font-mono text-ink-light mb-1">走累了坐坐</div>
-          <div class="text-xs font-medium text-ink mt-0.5">
+          <div class="text-xs font-medium text-ink mt-0.5 truncate">
             🍵 {walk.data.rest_anchor}
           </div>
         </div>
 
         <div>
           <div class="text-[10px] font-mono text-ink-light mb-1">翻翻東西的角落</div>
-          <div class="text-xs font-medium text-ink mt-0.5">
+          <div class="text-xs font-medium text-ink mt-0.5 truncate">
             🎒 {walk.data.loot_sorting_spot}
           </div>
         </div>
       </div>
     </header>
 
-    <!-- 路過的順序 -->
-    <section class="mb-10">
-      <h2 class="font-serif font-bold text-base text-ink mb-4 flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-        順路經過的地方
-      </h2>
+    <!-- 🚩 實體散步起點卡片 (Departure Anchor) -->
+    <section class="mb-10 bg-white rounded-2xl border-2 border-accent/30 p-5 sm:p-6 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-7 h-7 rounded-full bg-accent text-white flex items-center justify-center font-bold text-xs shadow-sm">
+            起
+          </span>
+          <div>
+            <div class="text-[10px] font-mono text-accent font-bold tracking-wider">STARTING POINT</div>
+            <h2 class="font-serif font-bold text-lg text-ink">
+              {walk.data.starting_point}
+            </h2>
+          </div>
+        </div>
 
-      <div class="space-y-3">
-        {sequencedSpots.map((spot, index) => (
-          <div class="flex gap-4 items-start bg-white p-4 rounded-xl border border-paper-border">
-            <div class="w-6 h-6 rounded-full bg-paper-hover border border-paper-border flex items-center justify-center font-mono text-[11px] text-ink-light shrink-0">
-              {index + 1}
-            </div>
-            <div class="flex-grow">
-              <div class="flex items-center justify-between gap-2 mb-1">
-                <a href={`/taipei-anime-walk/spots/${spot.slug}`} class="font-serif font-bold text-sm text-ink hover:text-accent transition">
-                  {spot.data.name}
-                </a>
-                <span class="text-[10px] text-ink-light font-mono">
-                  {spot.data.backpack_friendly}
-                </span>
+        {walk.data.starting_mrt && (
+          <span class="text-xs font-mono px-3 py-1 rounded-full bg-paper-hover text-ink border border-paper-border self-start sm:self-auto">
+            🚇 {walk.data.starting_mrt}
+          </span>
+        )}
+      </div>
+
+      {walk.data.starting_direction && (
+        <p class="text-xs text-ink-muted leading-relaxed font-serif mb-4 pl-9">
+          🧭 <strong>出站視角</strong>：{walk.data.starting_direction}
+        </p>
+      )}
+
+      <!-- GPS 定位與導航工具列 -->
+      <div class="pt-3 border-t border-paper-border/60 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2">
+          <button 
+            id="gps-locate-btn"
+            type="button"
+            data-target-lat={startCoords[1]}
+            data-target-lng={startCoords[0]}
+            class="text-xs px-3 py-1.5 rounded-xl border border-paper-border bg-paper hover:border-accent text-ink-muted hover:text-ink transition flex items-center gap-1.5 cursor-pointer font-medium"
+          >
+            <span>📍 定位我目前的位置</span>
+          </button>
+
+          <a 
+            href={googleNavUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs px-3 py-1.5 rounded-xl border border-accent/40 bg-accent/5 hover:bg-accent hover:text-white text-accent transition flex items-center gap-1 font-medium"
+          >
+            <span>Google 地圖導航起點 ↗</span>
+          </a>
+        </div>
+
+        <div id="gps-status-msg" class="text-xs font-mono text-ink-light"></div>
+      </div>
+    </section>
+
+    <!-- 🚶 連續漫遊時序步道圖 (Vertical Walking Timeline) -->
+    <section class="mb-12">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="font-serif font-bold text-base text-ink flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+          漫遊動線與順路街角
+        </h2>
+        <span class="text-[11px] font-mono text-ink-light">
+          共途經 {sequencedSpots.length} 處街角
+        </span>
+      </div>
+
+      <!-- 連續時間軸容器 -->
+      <div class="relative pl-6 sm:pl-8 border-l-2 border-dashed border-paper-border ml-3 sm:ml-4 space-y-6">
+        <!-- 起點節點 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1 w-5 h-5 rounded-full bg-accent text-white flex items-center justify-center font-mono text-[10px] shadow-sm">
+            ●
+          </div>
+          <div class="text-[11px] font-mono text-accent font-bold mb-0.5">00:00 出發起點</div>
+          <div class="font-serif font-bold text-sm text-ink">{walk.data.starting_point}</div>
+          <div class="text-xs text-ink-light mt-0.5 font-serif">{walk.data.starting_direction || "準備開始今天隨興的散步。"}</div>
+        </div>
+
+        <!-- 依序呈現步行過渡與各站點 -->
+        {sequencedSpots.map((spot, index) => {
+          const transitionGuide = walk.data.walking_connections?.[index];
+          const spotGoogleUrl = spot.data.google_maps_url || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.data.name)}`;
+
+          return (
+            <div class="space-y-4">
+              <!-- 步行過渡提示 -->
+              {transitionGuide && (
+                <div class="bg-paper-hover/70 rounded-xl px-3.5 py-2 border border-paper-border/60 text-xs text-ink-muted font-serif flex items-center gap-2">
+                  <span class="text-sm">🚶</span>
+                  <span>{transitionGuide}</span>
+                </div>
+              )}
+
+              <!-- 站點卡片 -->
+              <div class="relative bg-white p-4 sm:p-5 rounded-2xl border border-paper-border shadow-sm hover:border-ink-muted/60 transition group">
+                <div class="absolute -left-[31px] sm:-left-[39px] top-5 w-5 h-5 rounded-full bg-white border-2 border-ink text-ink flex items-center justify-center font-mono text-[10px] font-bold">
+                  {index + 1}
+                </div>
+
+                <div class="flex items-start justify-between gap-2 mb-2">
+                  <div>
+                    <div class="text-[10px] font-mono text-ink-light mb-0.5">第 {index + 1} 站 • {spot.data.district}</div>
+                    <h3 class="font-serif font-bold text-base text-ink group-hover:text-accent transition">
+                      <a href={`/taipei-anime-walk/spots/${spot.slug}`}>
+                        {spot.data.name}
+                      </a>
+                    </h3>
+                  </div>
+
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-paper-hover text-ink-light border border-paper-border shrink-0">
+                    {spot.data.backpack_friendly}
+                  </span>
+                </div>
+
+                <p class="text-xs text-ink-muted leading-relaxed font-serif mb-3">
+                  {spot.data.vibe}
+                </p>
+
+                <div class="pt-2 border-t border-paper-border/60 flex items-center justify-between text-xs">
+                  <a 
+                    href={`/taipei-anime-walk/spots/${spot.slug}`}
+                    class="font-medium text-accent hover:underline flex items-center gap-1"
+                  >
+                    閱讀店鋪隨筆 ➔
+                  </a>
+
+                  <a 
+                    href={spotGoogleUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-[11px] text-ink-light hover:text-ink transition flex items-center gap-1"
+                  >
+                    <span>Google 地圖 ↗</span>
+                  </a>
+                </div>
               </div>
-              <p class="text-xs text-ink-muted leading-relaxed font-serif">
-                {spot.data.vibe}
-              </p>
+            </div>
+          );
+        })}
+
+        <!-- 走累了坐坐 (歇腳節點) -->
+        <div class="relative pt-2">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-3 w-5 h-5 rounded-full bg-archive text-white flex items-center justify-center font-mono text-[10px] shadow-sm">
+            🍵
+          </div>
+          <div class="bg-white p-4 sm:p-5 rounded-2xl border border-paper-border shadow-sm">
+            <div class="text-[10px] font-mono text-archive font-bold mb-0.5">REST ANCHOR • 走累了坐坐</div>
+            <div class="font-serif font-bold text-sm text-ink mb-1">
+              {walk.data.rest_anchor}
+            </div>
+            <div class="text-xs text-ink-muted font-serif leading-relaxed">
+              背包放下來，喝口水或冰麥茶。順便可以在 <strong>{walk.data.loot_sorting_spot}</strong> 慢慢翻看今天帶出來的戰利品與二手小周邊。
             </div>
           </div>
-        ))}
+        </div>
       </div>
     </section>
 
     <!-- 散步隨筆正文 -->
-    <div class="prose prose-neutral max-w-none text-ink-muted leading-relaxed font-serif">
-      <Content />
+    <div class="pt-8 border-t border-paper-border">
+      <div class="text-[11px] font-mono text-ink-light mb-3">ESSAY • 隨筆隨想</div>
+      <div class="prose prose-neutral max-w-none text-ink-muted leading-relaxed font-serif">
+        <Content />
+      </div>
     </div>
   </article>
 </BaseLayout>
+
+<script>
+  function setupGpsLocate() {
+    const locateBtn = document.getElementById('gps-locate-btn');
+    const statusMsg = document.getElementById('gps-status-msg');
+    if (!locateBtn || !statusMsg) return;
+
+    const targetLat = parseFloat(locateBtn.getAttribute('data-target-lat') || '0');
+    const targetLng = parseFloat(locateBtn.getAttribute('data-target-lng') || '0');
+
+    // Haversine 公尺距離計算
+    function calcDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
+      const R = 6371e3;
+      const p1 = lat1 * Math.PI / 180;
+      const p2 = lat2 * Math.PI / 180;
+      const dp = (lat2 - lat1) * Math.PI / 180;
+      const dl = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dp / 2) * Math.sin(dp / 2) +
+                Math.cos(p1) * Math.cos(p2) *
+                Math.sin(dl / 2) * Math.sin(dl / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return Math.round(R * c);
+    }
+
+    locateBtn.addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        statusMsg.textContent = '此瀏覽器不支援 GPS 定位';
+        return;
+      }
+
+      statusMsg.textContent = '正在讀取衛星定位...';
+
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const userLat = pos.coords.latitude;
+          const userLng = pos.coords.longitude;
+          const meters = calcDistance(userLat, userLng, targetLat, targetLng);
+
+          if (meters < 80) {
+            statusMsg.innerHTML = '<span class="text-accent font-bold">📍 你已經在起點附近了！</span> 可以準備漫步。';
+          } else if (meters < 1000) {
+            const mins = Math.max(1, Math.round(meters / 75));
+            statusMsg.innerHTML = `📍 距起點約 <strong class="text-ink">${meters} 公尺</strong>（步行約 ${mins} 分鐘）`;
+          } else {
+            const km = (meters / 1000).toFixed(1);
+            statusMsg.innerHTML = `📍 距起點約 <strong class="text-ink">${km} 公里</strong>`;
+          }
+        },
+        (err) => {
+          if (err.code === err.PERMISSION_DENIED) {
+            statusMsg.textContent = '請允許瀏覽器存取位置以計算距離';
+          } else {
+            statusMsg.textContent = '暫時無法取得定位訊號';
+          }
+        },
+        { enableHighAccuracy: true, timeout: 8000 }
+      );
+    });
+  }
+
+  setupGpsLocate();
+  document.addEventListener('astro:page-load', setupGpsLocate);
+</script>
