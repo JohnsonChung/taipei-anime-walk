@@ -4,10 +4,37 @@
 
 ---
 
-## 📌 待辦功能：散步路線瀏覽人氣與熱門度統計系統
+## 📌 待辦功能一：個人 Google My Maps 與網站雙向冷同步系統 (Cold Sync)
 
 ### 1. 需求描述
-- 在「散步路線」獨立分頁 (/walks) 及路線詳細頁中，顯示各路線的瀏覽人氣與熱度指標。
+- 在站長指定維護時間（On-Demand），將個人的 Google My Maps 與網站資料庫進行雙向地點冷同步。
+- 支援手機外出時在 Google Maps 打點後一鍵拉取更新到網站，也支援網站新增的社群投稿地點一鍵導出回推至個人 My Maps。
+
+---
+
+### 2. 技術架構與雙向工作流評估
+
+| 同步方向 | 自動化程度 | 技術機制與實作方式 |
+| :--- | :---: | :--- |
+| **Google My Maps ➔ 本網站 (Inbound Pull)** | **100% 全自動** | 透過 My Maps 免金鑰 KML 端點 (`https://www.google.com/maps/d/kml?mid=<MID>&forcekml=1`) 下載解析，自動比對 `src/content/spots/`。<br/>- **新地點**：自動生成對應商圈的 Markdown 骨架。<br/>- **座標微調**：更新 frontmatter `coordinates`，**絕不覆蓋既有的散文與漫遊提醒**。 |
+| **本網站 ➔ Google My Maps (Outbound Export)** | **半自動 (5 秒)** | 因 Google 官方未開放 My Maps 直接寫入 API（標記為 Infeasible），網站提供一鍵導出指令生成標準 `taipei_anime_walk.kml`，於 My Maps 介面點選「重新匯入並替換所有項目」，即可一鍵刷新個人地圖。 |
+
+---
+
+### 3. 預計實作步驟
+1. 建立獨立同步腳本 `scripts/sync-mymaps.mjs`。
+2. 在 `package.json` 加入 CLI 指令：
+   - `"sync:pull": "node scripts/sync-mymaps.mjs pull"`
+   - `"sync:export": "node scripts/sync-mymaps.mjs export"`
+3. 設定環境變數 `GOOGLE_MYMAPS_MID`。
+4. 導入差異檢測報告 (Diff Table)，在終端機列出「My Maps 新增 / 網站新增 / 座標微調」之比對項目。
+
+---
+
+## 📌 待辦功能二：散步路線瀏覽人氣與熱門度統計系統
+
+### 1. 需求描述
+- 在「散步路線」獨立分頁 (`/walks`) 及路線詳細頁中，顯示各路線的瀏覽人氣與熱度指標。
 - 讓漫遊者能一目了然哪幾條路線最受歡迎（例如加上「🔥 最多人走過」熱門標籤）。
 - 提供依「🔥 人氣熱門 / ⚡ 步調輕鬆 / 預設精選」排序路線的功能。
 - 支援讀者互動（例如「❤️ 想去這條路線」或「👣 走過打卡」）。
@@ -27,6 +54,6 @@
 
 ### 3. 未來實作切入步驟
 1. 確定跨訪客數據同步策略（採方案 A 本地互動，或方案 B Cloudflare KV 全域計數）。
-2. 在 src/components/WalkCard.astro 中加入熱度徽章與排序資料屬性 (data-views, data-stamina)。
-3. 在 src/pages/walks/index.astro 提供「人氣最高 / 步調輕鬆」即時重排邏輯。
-4. 在路線詳細頁 src/pages/walks/[...slug].astro 觸發瀏覽記錄增加。
+2. 在 `src/components/WalkCard.astro` 中加入熱度徽章與排序資料屬性 (`data-views`, `data-stamina`)。
+3. 在 `src/pages/walks/index.astro` 提供「人氣最高 / 步調輕鬆」即時重排邏輯。
+4. 在路線詳細頁 `src/pages/walks/[...slug].astro` 觸發瀏覽記錄增加。
