@@ -16,32 +16,65 @@ interface Props {
   height?: string;
 }
 
-const { spots = [], initialCluster, height = "480px" } = Astro.props;
+const { spots = [], initialCluster, height = "520px" } = Astro.props;
 ---
 
 <div class="relative w-full rounded-2xl overflow-hidden border border-paper-border shadow-sm bg-white">
-  <!-- 地圖過濾控制器 -->
-  <div class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-2 rounded-xl shadow-sm border border-paper-border flex flex-wrap items-center gap-2 text-xs">
-    <span class="font-serif font-bold text-ink text-xs mr-1">地圖篩選:</span>
-    <button 
-      id="filter-all" 
-      class="filter-btn active px-2.5 py-1 rounded-lg font-medium transition bg-ink text-white"
-    >
-      全部 ({spots.length})
-    </button>
-    <button 
-      id="filter-active" 
-      class="filter-btn px-2.5 py-1 rounded-lg font-medium transition bg-paper-hover text-ink-muted hover:text-ink"
-    >
-      開著的店 ({spots.filter(s => s.status === 'active').length})
-    </button>
-    <button 
-      id="filter-archive" 
-      class="filter-btn px-2.5 py-1 rounded-lg font-medium transition bg-archive-bg text-archive hover:text-ink flex items-center gap-1"
-    >
-      <span>留在昨天</span>
-      <span class="font-mono text-[10px]">({spots.filter(s => s.status === 'archive').length})</span>
-    </button>
+  <!-- 地圖控制器容器 (左上方雙層導覽) -->
+  <div class="absolute top-4 left-4 z-20 flex flex-col gap-2 max-w-[calc(100%-2rem)] sm:max-w-none">
+    <!-- 商圈密度快速聚焦 (按密度優先) -->
+    <div class="bg-white/95 backdrop-blur-md px-3 py-2 rounded-xl shadow-sm border border-paper-border flex flex-wrap items-center gap-1.5 text-xs">
+      <span class="font-serif font-bold text-accent text-xs mr-1">密度聚焦:</span>
+      <button 
+        id="jump-ximen" 
+        class="jump-btn active px-2.5 py-1 rounded-lg font-medium transition bg-accent text-white flex items-center gap-1"
+        title="密度最高，精確街角視角"
+      >
+        <span>📍 西門核心</span>
+        <span class="text-[10px] font-mono opacity-80">(7處)</span>
+      </button>
+      <button 
+        id="jump-y-underground" 
+        class="jump-btn px-2.5 py-1 rounded-lg font-medium transition bg-paper-hover text-ink-muted hover:text-ink"
+      >
+        台北地下街 (3)
+      </button>
+      <button 
+        id="jump-syntrend" 
+        class="jump-btn px-2.5 py-1 rounded-lg font-medium transition bg-paper-hover text-ink-muted hover:text-ink"
+      >
+        光華三創 (3)
+      </button>
+      <button 
+        id="jump-all-view" 
+        class="jump-btn px-2.5 py-1 rounded-lg font-medium transition bg-paper-hover text-ink-muted hover:text-ink flex items-center gap-1"
+      >
+        <span>🗺️ 全景</span>
+      </button>
+    </div>
+
+    <!-- 狀態篩選 -->
+    <div class="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl shadow-sm border border-paper-border flex flex-wrap items-center gap-1.5 text-xs">
+      <span class="font-serif font-bold text-ink text-[11px] mr-1">狀態:</span>
+      <button 
+        id="filter-all" 
+        class="filter-btn active px-2 py-0.5 rounded-lg font-medium transition bg-ink text-white text-[11px]"
+      >
+        全部 ({spots.length})
+      </button>
+      <button 
+        id="filter-active" 
+        class="filter-btn px-2 py-0.5 rounded-lg font-medium transition bg-paper-hover text-ink-muted hover:text-ink text-[11px]"
+      >
+        開著呢 ({spots.filter(s => s.status === 'active').length})
+      </button>
+      <button 
+        id="filter-archive" 
+        class="filter-btn px-2 py-0.5 rounded-lg font-medium transition bg-archive-bg text-archive hover:text-ink text-[11px]"
+      >
+        留在昨天 ({spots.filter(s => s.status === 'archive').length})
+      </button>
+    </div>
   </div>
 
   <!-- 地圖容器 -->
@@ -56,9 +89,14 @@ const { spots = [], initialCluster, height = "480px" } = Astro.props;
       return;
     }
 
+    // 依據使用者指示：以地點密度最高之西門核心商圈為優先，深度 zoom-in (zoom: 16)
+    // 第一印象即呈現細膩街道、老巷弄與緊湊標記
+    const defaultCenter = [25.0442, 121.5080];
+    const defaultZoom = 16;
+
     const map = L.map('taipei-anime-map', {
-      center: [25.0450, 121.5150],
-      zoom: 14,
+      center: defaultCenter,
+      zoom: defaultZoom,
       zoomControl: false,
       scrollWheelZoom: false
     });
@@ -74,6 +112,7 @@ const { spots = [], initialCluster, height = "480px" } = Astro.props;
 
     let currentFilter = 'all';
     let markersLayer = L.layerGroup().addTo(map);
+    const allBounds = [];
 
     function createMarkerIcon(spot) {
       const isArchive = spot.status === 'archive';
@@ -88,29 +127,29 @@ const { spots = [], initialCluster, height = "480px" } = Astro.props;
             border: 2px solid ${color};
             color: ${color};
             border-radius: 9999px;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 13px;
             font-family: serif;
             font-weight: bold;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             transform: translate(-50%, -50%);
             transition: all 0.2s ease;
           ">
             ${label}
           </div>
         `,
-        iconSize: [30, 30],
-        iconAnchor: [15, 15]
+        iconSize: [32, 32],
+        iconAnchor: [16, 16]
       });
     }
 
     function renderMarkers() {
       markersLayer.clearLayers();
-      const bounds = [];
+      allBounds.length = 0;
 
       spots.forEach(spot => {
         if (currentFilter === 'active' && spot.status !== 'active') return;
@@ -152,23 +191,68 @@ const { spots = [], initialCluster, height = "480px" } = Astro.props;
 
         marker.bindPopup(popupContent);
         markersLayer.addLayer(marker);
-        bounds.push([lat, lng]);
+        allBounds.push([lat, lng]);
       });
-
-      if (bounds.length > 0) {
-        map.fitBounds(bounds, { padding: [40, 40], maxZoom: 16 });
-      }
+      // 保持密度優先的深入 zoom 視野，不自動全幅拉遠
     }
 
     renderMarkers();
 
+    // 綁定商圈聚焦按鈕
+    const btnXimen = document.getElementById('jump-ximen');
+    const btnUnderground = document.getElementById('jump-y-underground');
+    const btnSyntrend = document.getElementById('jump-syntrend');
+    const btnAllView = document.getElementById('jump-all-view');
+    const allJumpBtns = [btnXimen, btnUnderground, btnSyntrend, btnAllView];
+
+    function setJumpButtonActive(activeBtn) {
+      allJumpBtns.forEach(btn => {
+        if (!btn) return;
+        btn.classList.remove('bg-accent', 'text-white');
+        btn.classList.add('bg-paper-hover', 'text-ink-muted');
+      });
+      activeBtn.classList.remove('bg-paper-hover', 'text-ink-muted');
+      activeBtn.classList.add('bg-accent', 'text-white');
+    }
+
+    if (btnXimen) {
+      btnXimen.addEventListener('click', () => {
+        setJumpButtonActive(btnXimen);
+        map.flyTo([25.0442, 121.5080], 16, { duration: 0.8 });
+      });
+    }
+
+    if (btnUnderground) {
+      btnUnderground.addEventListener('click', () => {
+        setJumpButtonActive(btnUnderground);
+        map.flyTo([25.0485, 121.5150], 16, { duration: 0.8 });
+      });
+    }
+
+    if (btnSyntrend) {
+      btnSyntrend.addEventListener('click', () => {
+        setJumpButtonActive(btnSyntrend);
+        map.flyTo([25.0450, 121.5312], 16, { duration: 0.8 });
+      });
+    }
+
+    if (btnAllView) {
+      btnAllView.addEventListener('click', () => {
+        setJumpButtonActive(btnAllView);
+        if (allBounds.length > 0) {
+          map.fitBounds(allBounds, { padding: [50, 50], maxZoom: 15 });
+        }
+      });
+    }
+
+    // 狀態篩選按鈕
     const btnAll = document.getElementById('filter-all');
     const btnActive = document.getElementById('filter-active');
     const btnArchive = document.getElementById('filter-archive');
-    const allBtns = [btnAll, btnActive, btnArchive];
+    const allFilterBtns = [btnAll, btnActive, btnArchive];
 
-    function setButtonActive(activeBtn) {
-      allBtns.forEach(btn => {
+    function setFilterButtonActive(activeBtn) {
+      allFilterBtns.forEach(btn => {
         if (!btn) return;
         btn.classList.remove('bg-ink', 'text-white');
         btn.classList.add('bg-paper-hover', 'text-ink-muted');
@@ -180,7 +264,7 @@ const { spots = [], initialCluster, height = "480px" } = Astro.props;
     if (btnAll) {
       btnAll.addEventListener('click', () => {
         currentFilter = 'all';
-        setButtonActive(btnAll);
+        setFilterButtonActive(btnAll);
         renderMarkers();
       });
     }
@@ -188,7 +272,7 @@ const { spots = [], initialCluster, height = "480px" } = Astro.props;
     if (btnActive) {
       btnActive.addEventListener('click', () => {
         currentFilter = 'active';
-        setButtonActive(btnActive);
+        setFilterButtonActive(btnActive);
         renderMarkers();
       });
     }
@@ -196,7 +280,7 @@ const { spots = [], initialCluster, height = "480px" } = Astro.props;
     if (btnArchive) {
       btnArchive.addEventListener('click', () => {
         currentFilter = 'archive';
-        setButtonActive(btnArchive);
+        setFilterButtonActive(btnArchive);
         renderMarkers();
       });
     }
