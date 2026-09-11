@@ -1,7 +1,7 @@
 {
   "name": "taipei-anime-walk",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "台北動漫散步指南 (Taipei Anime Walk) - 二次元線上風格獨立誌兼散步地圖",
   "scripts": {
     "dev": "astro dev",

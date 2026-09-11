@@ -3,8 +3,13 @@
 > 「今天好像也沒什麼特別的目的，只是想出門走一走。」  
 > 一本記錄台北街頭那些吹著冷氣、翻翻舊書、走累了就坐下發呆的**二次元日常散步隨筆兼地圖**。
 
+[![Version: v0.1](https://img.shields.io/badge/version-v0.1-orange.svg)](https://github.com/JohnsonChung/taipei-anime-walk)
+[![Status: 建置中 / 快速落地草圖](https://img.shields.io/badge/status-建置中%20%2F%20快速落地草圖-yellow.svg)](https://github.com/JohnsonChung/taipei-anime-walk)
 [![Deploy to GitHub Pages](https://github.com/JohnsonChung/taipei-anime-walk/actions/workflows/deploy.yml/badge.svg)](https://github.com/JohnsonChung/taipei-anime-walk/actions/workflows/deploy.yml)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+> 🚧 **版本狀態：v0.1（建置中 / 快速落地草圖）**  
+> 目前專案處於敏捷摸索階段，一切皆為快速落地的靈感草圖與隨興記錄，持續修補與迭代中。
 
 🌐 **線上公開網址**：[https://johnsonchung.github.io/taipei-anime-walk/](https://johnsonchung.github.io/taipei-anime-walk/)
 
