@@ -24,7 +24,7 @@ const clusters = ["全部", "西門商圈", "台北地下街", "光華三創", "
         <span class="text-xs font-serif font-bold text-ink mr-2">商圈聚落:</span>
         {clusters.map(cluster => (
           <a 
-            href={cluster === "全部" ? "/spots" : `/spots?cluster=${encodeURIComponent(cluster)}`}
+            href={cluster === "全部" ? "/taipei-anime-walk/spots" : `/taipei-anime-walk/spots?cluster=${encodeURIComponent(cluster)}`}
             class="text-xs px-3 py-1.5 rounded-full border border-paper-border bg-white text-ink-muted hover:text-ink hover:border-ink-muted transition"
           >
             {cluster}
